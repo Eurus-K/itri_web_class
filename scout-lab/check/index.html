@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="店家一分鐘自我健檢：用五個問題檢查 Google 地圖資訊、照片、商品或服務說明、評論與預約聯絡入口，取得三個優先改善方向。">
+  <meta name="theme-color" content="#0875ed">
+  <title>店家 1 分鐘自我健檢｜Scout_Lab</title>
+  <style>
+    :root { --blue:#0875ed; --navy:#091643; --yellow:#ffe237; --orange:#ff6432; --cream:#fffdf2; --sky:#eaf6ff; --ink:#14234d; --muted:#536181; --line:#11215a; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-height:100vh; background:var(--blue); color:var(--ink); font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif; line-height:1.6; }
+    body:before { content:""; position:fixed; inset:0; z-index:-1; opacity:.13; background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px); background-size:30px 30px; }
+    [hidden] { display:none!important; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; cursor:pointer; }
+    :focus-visible { outline:3px solid var(--orange); outline-offset:4px; }
+    .wrap { width:min(850px,calc(100% - 32px)); margin-inline:auto; }
+    .skip-link { position:absolute; top:-70px; left:12px; background:var(--yellow); padding:9px 14px; z-index:20; font-weight:900; }
+    .skip-link:focus { top:10px; }
+    .site-header { background:var(--cream); border-bottom:3px solid var(--line); }
+    .header-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { font-size:22px; font-weight:1000; letter-spacing:-.05em; color:var(--navy); white-space:nowrap; }
+    .brand span { display:block; font-size:10px; letter-spacing:.09em; color:var(--muted); font-weight:800; }
+    .back-link { font-size:13px; font-weight:900; border-bottom:2px solid var(--navy); padding-bottom:2px; }
+    .page-main { padding-block:48px 70px; }
+    .frame { background:var(--cream); border:4px solid var(--line); box-shadow:12px 12px 0 var(--yellow); }
+    .intro, .question, .result { padding:clamp(26px,5vw,52px); }
+    .eyebrow { color:var(--blue); font:1000 12px/1.4 ui-monospace,"Cascadia Mono",monospace; letter-spacing:.1em; text-transform:uppercase; }
+    h1, h2, h3, p { margin-top:0; }
+    h1 { margin:18px 0 18px; color:var(--navy); font-size:clamp(37px,7vw,64px); line-height:1.17; letter-spacing:-.065em; font-weight:1000; }
+    h1 em { color:var(--blue); font-style:normal; }
+    h2 { margin:13px 0 15px; color:var(--navy); font-size:clamp(29px,5vw,43px); line-height:1.25; letter-spacing:-.05em; font-weight:1000; }
+    p { color:var(--muted); }
+    .intro-grid { display:grid; grid-template-columns:1.2fr .8fr; align-items:center; gap:35px; }
+    .intro-lead { font-size:17px; max-width:540px; }
+    .intro-visual { min-width:0; border:3px solid var(--line); box-shadow:7px 7px 0 var(--yellow); aspect-ratio:1555/1011; overflow:hidden; }
+    .intro-visual img { display:block; width:200%; max-width:none; height:auto; }
+    .pill-row { display:flex; flex-wrap:wrap; gap:8px; margin:23px 0 27px; }
+    .pill { padding:5px 10px; background:var(--sky); border:2px solid var(--line); font-size:12px; font-weight:900; }
+    .button { display:inline-flex; align-items:center; justify-content:center; gap:8px; border:3px solid var(--line); background:var(--yellow); color:var(--navy); padding:12px 20px; min-height:52px; box-shadow:5px 5px 0 var(--line); font-weight:950; }
+    @media (hover:hover) { .button:hover { transform:translate(-2px,-2px); box-shadow:7px 7px 0 var(--line); } }
+    .button-blue { background:var(--blue); color:white; }
+    .button-white { background:white; }
+    .button:disabled { opacity:.55; cursor:not-allowed; transform:none; }
+    .intro-note { margin:18px 0 0; font-size:12px; }
+    .progress-top { display:flex; justify-content:space-between; gap:10px; color:var(--navy); font-size:13px; font-weight:950; }
+    .progress-track { height:14px; margin:10px 0 34px; background:white; border:2px solid var(--line); }
+    .progress-fill { height:100%; background:var(--yellow); width:0; transition:width .2s; }
+    .question-panel { min-height:355px; }
+    .question-count { color:var(--blue-deep,var(--blue)); font-size:12px; font-weight:1000; letter-spacing:.12em; }
+    .question-help { font-size:15px; margin-bottom:25px; }
+    .choices { display:grid; gap:12px; }
+    .choice { width:100%; min-height:60px; display:flex; align-items:center; gap:14px; text-align:left; border:3px solid var(--line); background:white; padding:12px 18px; color:var(--ink); font-weight:850; box-shadow:4px 4px 0 #cfe5ff; }
+    .choice:before { content:""; flex:0 0 19px; height:19px; background:var(--cream); border:2px solid var(--line); }
+    .choice.selected { background:var(--yellow); box-shadow:5px 5px 0 var(--line); }
+    @media (hover:hover) { .choice:hover { background:var(--yellow); box-shadow:5px 5px 0 var(--line); } }
+    .choice.selected:before { content:"✓"; display:grid; place-items:center; font-size:13px; line-height:1; }
+    .question-footer { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:25px; }
+    .quiet-button { border:0; background:none; color:var(--blue); text-decoration:underline; text-underline-offset:4px; padding:9px 0; font-weight:900; }
+    .question-footer small { color:var(--muted); }
+    .score-box { display:flex; align-items:baseline; gap:8px; padding:14px 20px; margin:19px 0 24px; width:max-content; max-width:100%; color:var(--navy); background:var(--yellow); border:3px solid var(--line); box-shadow:5px 5px 0 var(--line); }
+    .score-box strong { font:1000 48px/1 ui-monospace,"Cascadia Mono",monospace; }
+    .score-box span { font-weight:900; }
+    .result-status { display:inline-block; margin-bottom:17px; padding:5px 10px; background:var(--sky); border:2px solid var(--line); color:var(--navy); font-size:13px; font-weight:950; }
+    .shop-field { display:grid; gap:7px; margin:20px 0 6px; max-width:390px; color:var(--navy); font-size:14px; font-weight:900; }
+    .shop-field input { width:100%; min-height:48px; border:2px solid var(--line); background:white; padding:9px 12px; color:var(--ink); font:inherit; font-weight:500; }
+    .advice-list { display:grid; gap:12px; margin:18px 0 26px; }
+    .advice { display:grid; grid-template-columns:36px 1fr; gap:12px; padding:16px; border:2px solid var(--line); background:white; }
+    .advice b { display:grid; place-items:center; width:32px; height:32px; background:var(--yellow); border:2px solid var(--line); font:1000 14px/1 ui-monospace,monospace; }
+    .advice p { margin:0; color:var(--ink); font-size:15px; }
+    .result-actions { display:flex; flex-wrap:wrap; gap:13px; margin:20px 0 13px; }
+    .status { min-height:22px; margin:0 0 10px; color:var(--blue); font-size:13px; font-weight:900; }
+    .disclaimer { font-size:12px; margin:15px 0 0; }
+    .site-footer { color:#eaf3ff; text-align:center; padding:0 18px 25px; font-size:12px; }
+    .site-footer a { text-decoration:underline; text-underline-offset:3px; }
+    @media(max-width:640px) {
+      .page-main { padding-block:23px 45px; }
+      .frame { box-shadow:7px 7px 0 var(--yellow); }
+      .intro-grid { grid-template-columns:1fr; }
+      .intro-visual { width:min(290px,100%); }
+      .button { width:100%; }
+      .result-actions { flex-direction:column; }
+      .question-panel { min-height:0; }
+      .question-footer { margin-top:19px; }
+      .header-inner { min-height:65px; }
+      .brand { font-size:20px; }
+    }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .progress-fill, .button { transition:none; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="site-header"><div class="wrap header-inner"><a class="brand" href="../">Scout_Lab<span>A TTFN.Studio service brand</span></a><a class="back-link" href="../">回服務首頁 →</a></div></header>
+  <main class="page-main wrap" id="main">
+    <section class="frame intro" id="intro" aria-labelledby="intro-title">
+      <div class="intro-grid"><div><span class="eyebrow">Local business · Search check</span><h1 id="intro-title">客人在網路上，<br><em>找得到你的店嗎？</em></h1><p class="intro-lead">花約 1 分鐘回答 5 題，看看店家資訊、商品或服務介紹與聯絡入口有哪些可以先改善的地方。完成後會得到 3 個優先建議。</p><div class="pill-row"><span class="pill">店家資料</span><span class="pill">照片與服務</span><span class="pill">評論與聯絡</span></div><button class="button" id="start-button" type="button">開始自我健檢 →</button><p class="intro-note">手機上可單手操作；結果不儲存。這是自我檢查工具，不是 Google 排名或 AI 推薦保證。</p></div><div class="intro-visual"><img src="../assets/scout-scenes.png" width="1555" height="1011" alt="Scout_Lab 小恐龍拿著放大鏡探索搜尋線索"></div></div>
+    </section>
+    <section class="frame question" id="quiz" aria-labelledby="quiz-title" hidden>
+      <div class="progress-top"><span id="quiz-title">店家自我健檢</span><span id="progress-text">第 1 題／共 5 題</span></div><div class="progress-track" role="progressbar" aria-label="測驗進度" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" id="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="question-panel" data-question="0"><span class="question-count">QUESTION 01 / 05</span><h2>Google 地圖上的店家資料完整嗎？</h2><p class="question-help">想想營業時間、地址、電話和主要服務，客人能不能一次查清楚。</p><div class="choices"><button class="choice" type="button" data-score="2">資料完整，而且最近有檢查更新</button><button class="choice" type="button" data-score="1">Google 地圖找得到我的店，但有些資料可能過期</button><button class="choice" type="button" data-score="0">Google 地圖上找不到我的店，或不確定資料對不對</button></div></div>
+      <div class="question-panel" data-question="1" hidden><span class="question-count">QUESTION 02 / 05</span><h2>客人看得到近期的店面、商品或服務照片嗎？</h2><p class="question-help">照片可以幫客人了解你的店；使用顧客照片前要取得同意。</p><div class="choices"><button class="choice" type="button" data-score="2">有清楚照片，近期也有更新</button><button class="choice" type="button" data-score="1">有照片，但很久沒更新</button><button class="choice" type="button" data-score="0">幾乎沒有照片，或看不出提供什麼</button></div></div>
+      <div class="question-panel" data-question="2" hidden><span class="question-count">QUESTION 03 / 05</span><h2>主要商品或服務與價格資訊容易找到嗎？</h2><p class="question-help">若價格依需求變動，至少能否找到起價、計價方式或詢問流程？</p><div class="choices"><button class="choice" type="button" data-score="2">內容與價格／計價方式都清楚</button><button class="choice" type="button" data-score="1">有介紹商品或服務，但價格或流程不清楚</button><button class="choice" type="button" data-score="0">網路上很難查到提供什麼與如何計價</button></div></div>
+      <div class="question-panel" data-question="3" hidden><span class="question-count">QUESTION 04 / 05</span><h2>店家有留意並回覆 Google 評論嗎？</h2><p class="question-help">不用追求大量評論；重點是如實回應已有的顧客意見。</p><div class="choices"><button class="choice" type="button" data-score="2">有定期查看並回覆已有評論</button><button class="choice" type="button" data-score="1">偶爾回覆，但沒有固定查看</button><button class="choice" type="button" data-score="0">幾乎沒留意，或不知道去哪裡看</button></div></div>
+      <div class="question-panel" data-question="4" hidden><span class="question-count">QUESTION 05 / 05</span><h2>搜尋到店後，客人能快速聯絡、預約或下單嗎？</h2><p class="question-help">從 Google 地圖或網站出發，能不能很快找到 LINE、電話、預約或購買方式？</p><div class="choices"><button class="choice" type="button" data-score="2">入口明顯，步驟也清楚</button><button class="choice" type="button" data-score="1">能聯絡、預約或下單，但入口不明顯</button><button class="choice" type="button" data-score="0">沒有固定入口，或客人常問怎麼聯絡</button></div></div>
+      <div class="question-footer"><button type="button" class="quiet-button" id="back-button">← 回上一題</button><small>選一個最接近現況的答案</small></div>
+    </section>
+    <section class="frame result" id="result" aria-labelledby="result-title" hidden><span class="eyebrow">Your scout report</span><h2 id="result-title">你的第一份搜尋線索整理好了。</h2><div class="score-box"><strong id="score-value">0</strong><span>／10 分</span></div><span class="result-status" id="result-status"></span><p>這是依你的回答整理的自我檢查結果。先從下面三件事挑一件做，比一次改完整個網站更容易開始。</p><div class="advice-list" id="advice-list"></div><label class="shop-field" for="shop-name">店名（選填，複製結果時會一起帶入）<input id="shop-name" type="text" maxlength="80" autocomplete="organization" placeholder="例如：小樹咖啡館"></label><div class="result-actions"><button class="button" type="button" id="copy-button">複製結果 →</button><a class="button button-blue" href="https://line.me/R/ti/p/%40280atokq" target="_blank" rel="noopener noreferrer">加 LINE 討論 ↗</a><button class="button button-white" type="button" id="restart-button">重新測一次</button></div><p class="status" id="copy-status" role="status" aria-live="polite"></p><p class="disclaimer">結果只在此頁計算，不會儲存或傳送。這不是正式搜尋排名診斷，也不保證改善後的排名或 AI 曝光。</p></section>
+    <noscript><p class="frame" style="padding:20px">請啟用 JavaScript 以完成互動測驗。上方五題的內容仍可在網頁原始碼中閱讀。</p></noscript>
+  </main>
+  <footer class="site-footer">Scout_Lab · TTFN.Studio 旗下服務品牌 · 課堂測試版　<a href="../">回服務首頁</a></footer>
+  <script>
+    const intro = document.getElementById('intro');
+    const quiz = document.getElementById('quiz');
+    const result = document.getElementById('result');
+    const panels = [...document.querySelectorAll('[data-question]')];
+    const answers = Array(panels.length).fill(null);
+    let current = 0;
+    const suggestions = [
+      '先檢查 Google 地圖上的店家資料（Google 商家檔案）：營業時間、地址、電話和服務項目是否正確。',
+      '補上近期的店面、商品或服務照片；若使用顧客照片，先取得同意。',
+      '把主要商品或服務、價格或計價方式，以及詢問流程寫在容易找到的頁面。',
+      '定期查看 Google 評論，誠實回覆已有的顧客意見。',
+      '從 Google 地圖上的店家資料與網站各走一次聯絡、預約或下單流程，讓 LINE、電話、預約或購買入口更明顯。'
+    ];
+    const maintenanceTips = [
+      '每月檢查營業時間、商品或服務資訊與聯絡方式是否仍正確。',
+      '記錄客人最近常問的問題，補進網站或商家檔案。',
+      '觀察搜尋曝光、網站點擊、來電或導航等訊號，再決定下一步。'
+    ];
+    function showQuestion(index) {
+      current = index;
+      intro.hidden = true;
+      result.hidden = true;
+      quiz.hidden = false;
+      panels.forEach((panel, i) => {
+        panel.hidden = i !== index;
+        panel.querySelectorAll('.choice').forEach(choice => choice.classList.toggle('selected', Number(choice.dataset.score) === answers[i]));
+      });
+      document.getElementById('progress-text').textContent = `第 ${index + 1} 題／共 ${panels.length} 題`;
+      document.getElementById('progress-fill').style.width = `${(index + 1) / panels.length * 100}%`;
+      document.getElementById('progress-track').setAttribute('aria-valuenow', String(index + 1));
+      document.getElementById('back-button').textContent = index === 0 ? '← 回測驗說明' : '← 回上一題';
+      quiz.scrollIntoView({ block:'start', behavior:'smooth' });
+      panels[index].querySelector('h2').setAttribute('tabindex','-1');
+      panels[index].querySelector('h2').focus({ preventScroll:true });
+    }
+    function getReport() {
+      const total = answers.reduce((sum, value) => sum + value, 0);
+      const order = [0, 2, 4, 1, 3];
+      const weakest = order.map(i => ({ i, score:answers[i] })).sort((a,b) => a.score - b.score || order.indexOf(a.i) - order.indexOf(b.i));
+      const advice = weakest.filter(item => item.score < 2).slice(0,3).map(item => suggestions[item.i]);
+      for (const tip of maintenanceTips) if (advice.length < 3) advice.push(tip);
+      return { total, advice };
+    }
+    function showResult() {
+      const { total, advice } = getReport();
+      intro.hidden = true;
+      quiz.hidden = true;
+      result.hidden = false;
+      document.getElementById('score-value').textContent = String(total);
+      document.getElementById('result-status').textContent = total >= 8 ? '基礎資訊很完整，接著持續維護' : total >= 5 ? '已有基礎，先補最重要的缺口' : '先從店家基本資訊開始整理';
+      const list = document.getElementById('advice-list');
+      list.replaceChildren();
+      advice.forEach((tip, index) => {
+        const item = document.createElement('div');
+        item.className = 'advice';
+        const number = document.createElement('b');
+        number.textContent = String(index + 1).padStart(2,'0');
+        const text = document.createElement('p');
+        text.textContent = tip;
+        item.append(number, text);
+        list.append(item);
+      });
+      document.getElementById('copy-status').textContent = '';
+      result.scrollIntoView({ block:'start', behavior:'smooth' });
+      document.getElementById('result-title').setAttribute('tabindex','-1');
+      document.getElementById('result-title').focus({ preventScroll:true });
+    }
+    async function copyText(text) {
+      try { await navigator.clipboard.writeText(text); return true; }
+      catch {
+        const helper = document.createElement('textarea');
+        helper.value = text;
+        helper.style.position = 'fixed';
+        helper.style.opacity = '0';
+        document.body.appendChild(helper);
+        helper.select();
+        const copied = document.execCommand('copy');
+        helper.remove();
+        return copied;
+      }
+    }
+    document.getElementById('start-button').addEventListener('click', () => showQuestion(0));
+    panels.forEach((panel, index) => panel.querySelectorAll('.choice').forEach(choice => choice.addEventListener('click', () => {
+      answers[index] = Number(choice.dataset.score);
+      if (index < panels.length - 1) showQuestion(index + 1); else showResult();
+    })));
+    document.getElementById('back-button').addEventListener('click', () => {
+      if (current > 0) showQuestion(current - 1);
+      else { quiz.hidden = true; intro.hidden = false; intro.scrollIntoView({ block:'start', behavior:'smooth' }); }
+    });
+    document.getElementById('restart-button').addEventListener('click', () => {
+      answers.fill(null);
+      document.getElementById('shop-name').value = '';
+      result.hidden = true;
+      intro.hidden = false;
+      intro.scrollIntoView({ block:'start', behavior:'smooth' });
+    });
+    document.getElementById('copy-button').addEventListener('click', async () => {
+      const { total, advice } = getReport();
+      const shopName = document.getElementById('shop-name').value.trim();
+      const text = `Scout_Lab 店家自我健檢\n店名：${shopName || '（請自行填寫）'}\n分數：${total}/10\n優先建議：\n${advice.map((tip,i) => `${i+1}. ${tip}`).join('\n')}\n\n結果僅供初步整理，不保證搜尋排名或 AI 曝光。`;
+      const copied = await copyText(text);
+      document.getElementById('copy-status').textContent = copied ? (shopName ? '已複製結果，可以貼到 LINE 對話中。' : '已複製結果；貼到 LINE 前記得補上店名。') : '瀏覽器未允許複製，請手動截圖保存結果。';
+    });
+  </script>
+</body>
+</html>
