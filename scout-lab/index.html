@@ -126,7 +126,8 @@
     .field textarea { resize:vertical; min-height:89px; }
     .form-actions { display:flex; flex-wrap:wrap; gap:13px; align-items:center; margin-top:20px; }
     .form-note { font-size:12px!important; margin:14px 0 0!important; }
-    .copy-status { min-height:20px; font-size:13px; font-weight:800; color:var(--blue-deep)!important; margin:10px 0 0!important; }
+    .form-status { min-height:20px; font-size:13px; font-weight:800; color:var(--blue-deep)!important; margin:10px 0 0!important; }
+    .form-status.is-error { color:#a32121!important; }
     .site-footer { background:var(--navy); color:#dce6ff; padding:33px 0; }
     .mobile-line { display:none; }
     .mobile-line.is-hidden { display:none; }
@@ -313,14 +314,19 @@
     </section>
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="section wrap contact-grid">
-        <div><span class="kicker">06 / Let's explore</span><h2 id="contact-title">想知道你的店，<br>為什麼搜不到？</h2><p>準備好店家網址或 Google 地圖連結，加上你最想解決的問題，聊起來會更具體。目前這是課堂展示頁；LINE OA 作為練習諮詢入口，正式服務流程仍在規劃中。</p><a class="button button-white" href="https://line.me/R/ti/p/%40280atokq" target="_blank" rel="noopener noreferrer">加 Scout_Lab LINE 聊聊 ↗</a></div>
+        <div><span class="kicker">06 / Let's explore</span><h2 id="contact-title">想知道你的店，<br>為什麼搜不到？</h2><p>留下聯絡資料、想談的問題與方便的日期，我們會再與你確認諮詢時間。也可以先準備店家網址或 Google 地圖連結，讓討論更具體。</p><a class="button button-white" href="https://line.me/R/ti/p/%40280atokq" target="_blank" rel="noopener noreferrer">加 Scout_Lab LINE 聊聊 ↗</a></div>
         <div class="contact-card">
-          <h3>填一張諮詢小卡</h3><p>填完可複製內容，自行貼到 LINE 傳給我們。資料只留在你的瀏覽器，不會從網站送出。</p>
-          <form id="inquiry-form">
-            <div class="field"><label for="shop-url">店家網站或 Google 地圖連結（選填）</label><input id="shop-url" type="url" inputmode="url" placeholder="https://example.com"></div>
-            <div class="field"><label for="focus">最想先解決的問題</label><select id="focus"><option value="Google 地圖／商家檔案搜不到">Google 地圖／商家檔案搜不到</option><option value="ChatGPT、AI 搜尋裡的店家資訊">ChatGPT、AI 搜尋裡的店家資訊</option><option value="網站沒人詢問，內容不知道怎麼寫">網站沒人詢問，內容不知道怎麼寫</option><option value="還不確定，想先聊聊現況">還不確定，想先聊聊現況</option></select></div>
-            <div class="field"><label for="challenge">目前遇到的狀況（選填）</label><textarea id="challenge" placeholder="例如：在 Google 地圖搜「附近的早午餐」找不到我們，或網站有人看卻沒人預約..."></textarea></div>
-            <div class="form-actions"><button class="button" type="submit">複製諮詢小卡 →</button></div><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p><p class="form-note">此功能僅複製文字；開啟 LINE 後仍需由你自行貼上與傳送。</p>
+          <h3>預約諮詢</h3><p>填寫後會送出預約需求，我們將透過 Email 與你確認。送出不代表時段已確定。</p>
+          <form id="booking-form">
+            <div class="field"><label for="customer-name">稱呼 *</label><input id="customer-name" name="customer_name" autocomplete="name" maxlength="100" required></div>
+            <div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
+            <div class="field"><label for="phone">電話（選填）</label><input id="phone" name="phone" type="tel" autocomplete="tel" minlength="6" maxlength="30"></div>
+            <div class="field"><label for="preferred-date">希望諮詢日期 *</label><input id="preferred-date" name="preferred_date" type="date" required></div>
+            <div class="field"><label for="preferred-time-slot">方便時段 *</label><select id="preferred-time-slot" name="preferred_time_slot" required><option value="">請選擇</option><option value="上午">上午</option><option value="下午">下午</option><option value="晚上">晚上</option></select></div>
+            <div class="field"><label for="shop-url">店家網站或 Google 地圖連結（選填）</label><input id="shop-url" name="shop_url" type="url" inputmode="url" maxlength="500" placeholder="https://example.com"></div>
+            <div class="field"><label for="focus">最想先解決的問題 *</label><select id="focus" name="focus" required><option value="Google 地圖／商家檔案搜不到">Google 地圖／商家檔案搜不到</option><option value="ChatGPT、AI 搜尋裡的店家資訊">ChatGPT、AI 搜尋裡的店家資訊</option><option value="網站沒人詢問，內容不知道怎麼寫">網站沒人詢問，內容不知道怎麼寫</option><option value="還不確定，想先聊聊現況">還不確定，想先聊聊現況</option></select></div>
+            <div class="field"><label for="challenge">目前遇到的狀況（選填）</label><textarea id="challenge" name="challenge" maxlength="2000" placeholder="例如：在 Google 地圖搜「附近的早午餐」找不到我們..."></textarea></div>
+            <div class="form-actions"><button class="button" type="submit">送出預約需求 →</button></div><p class="form-status" id="booking-status" role="status" aria-live="polite"></p><p class="form-note">送出後，以上資料會儲存在 Scout_Lab 的資料庫，僅用於聯繫與安排本次諮詢。</p>
           </form>
         </div>
       </div>
@@ -348,28 +354,61 @@
       menuButton.setAttribute('aria-label', '開啟選單');
     }));
     document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('inquiry-form').addEventListener('submit', async event => {
+    const bookingForm = document.getElementById('booking-form');
+    const bookingDate = document.getElementById('preferred-date');
+    const bookingStatus = document.getElementById('booking-status');
+    const bookingButton = bookingForm.querySelector('button[type="submit"]');
+    const supabaseUrl = 'https://rbljfnakfqfcsirsyrjg.supabase.co';
+    const supabasePublishableKey = 'sb_publishable_gPWexuD2fDA0mAu8qJI4jg_hpMdqzgt';
+    const today = new Date();
+    bookingDate.min = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+    bookingForm.addEventListener('submit', async event => {
       event.preventDefault();
-      const url = document.getElementById('shop-url').value.trim();
-      const focus = document.getElementById('focus').value;
-      const challenge = document.getElementById('challenge').value.trim();
-      const summary = `Scout_Lab 諮詢小卡\n店家頁面：${url || '稍後提供'}\n想了解：${focus}\n目前問題：${challenge || '想先聊聊現況'}`;
-      const status = document.getElementById('copy-status');
+      const currentDate = new Date();
+      bookingDate.min = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+      if (!bookingForm.reportValidity()) return;
+      const formData = new FormData(bookingForm);
+      if (!formData.get('customer_name').trim()) {
+        document.getElementById('customer-name').setCustomValidity('請填寫稱呼。');
+        document.getElementById('customer-name').reportValidity();
+        return;
+      }
+      const booking = {
+        customer_name: formData.get('customer_name').trim(),
+        email: formData.get('email').trim(),
+        phone: formData.get('phone').trim() || null,
+        preferred_date: formData.get('preferred_date'),
+        preferred_time_slot: formData.get('preferred_time_slot'),
+        shop_url: formData.get('shop_url').trim() || null,
+        focus: formData.get('focus'),
+        challenge: formData.get('challenge').trim() || null
+      };
+      bookingButton.disabled = true;
+      bookingButton.textContent = '送出中…';
+      bookingStatus.classList.remove('is-error');
+      bookingStatus.textContent = '正在送出預約需求…';
       try {
-        await navigator.clipboard.writeText(summary);
-        status.textContent = '已複製諮詢小卡，可以貼到 LINE 對話中。';
+        const response = await fetch(`${supabaseUrl}/rest/v1/consultation_bookings`, {
+          method: 'POST',
+          headers: {
+            apikey: supabasePublishableKey,
+            'Content-Type': 'application/json',
+            Prefer: 'return=minimal'
+          },
+          body: JSON.stringify(booking)
+        });
+        if (!response.ok) throw new Error(`Booking request failed: ${response.status}`);
+        bookingForm.reset();
+        bookingStatus.textContent = '已收到你的預約需求，我們會透過 Email 與你確認時間。';
       } catch {
-        const helper = document.createElement('textarea');
-        helper.value = summary;
-        helper.style.position = 'fixed';
-        helper.style.opacity = '0';
-        document.body.appendChild(helper);
-        helper.select();
-        const copied = document.execCommand('copy');
-        helper.remove();
-        status.textContent = copied ? '已複製諮詢小卡，可以貼到 LINE 對話中。' : '瀏覽器未允許複製；請手動整理上述資訊後傳到 LINE。';
+        bookingStatus.classList.add('is-error');
+        bookingStatus.textContent = '送出失敗，請稍後再試，或透過 LINE 聯絡我們。';
+      } finally {
+        bookingButton.disabled = false;
+        bookingButton.textContent = '送出預約需求 →';
       }
     });
+    document.getElementById('customer-name').addEventListener('input', event => event.target.setCustomValidity(''));
   </script>
 </body>
 </html>

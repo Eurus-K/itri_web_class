@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="客人搜尋附近店家時，找得到你嗎？Scout_Lab 協助實體店家盤點 Google 地圖、網站與其他公開資訊，找出資料落差與聯絡卡點，整理優先改善方向；沒有網站也能先開始。">
+  <meta name="description" content="Google 地圖找不到你的店，或排在很後面？Scout_Lab 協助實體店家與個人工作室檢查 Google 商家資料、網站與其他公開資訊，找出資料落差和聯絡卡點，整理優先修改清單；沒有網站也能先開始。">
   <meta name="theme-color" content="#0875ed">
-  <title>Scout_Lab｜店家 Google 地圖與 AI 搜尋曝光健檢・在地 SEO</title>
+  <title>Scout_Lab｜Google 商家優化與地圖曝光健檢・實體店家與個人工作室</title>
   <style>
     :root {
       --blue:#0875ed; --blue-deep:#064ab3; --navy:#091643; --yellow:#ffe237;
@@ -38,8 +38,9 @@
     .hero { overflow:hidden; background:var(--blue); color:white; border-bottom:4px solid var(--line); position:relative; }
     .hero:before { content:""; position:absolute; inset:0; opacity:.14; background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px); background-size:34px 34px; mask-image:linear-gradient(90deg, transparent, black); }
     .hero-grid { position:relative; display:grid; grid-template-columns:1.03fr .97fr; gap:56px; align-items:center; padding-block:76px 83px; min-height:640px; }
-    .eyebrow { display:inline-flex; align-items:center; gap:9px; font-size:12px; font-weight:900; letter-spacing:.17em; text-transform:uppercase; }
-    .eyebrow:before { content:""; width:12px; height:12px; background:var(--yellow); box-shadow:3px 3px 0 var(--line); }
+    .eyebrow { display:inline-flex; align-items:center; flex-wrap:wrap; gap:6px 9px; font-size:12px; font-weight:900; letter-spacing:.17em; text-transform:uppercase; }
+    .eyebrow:before { content:""; flex:0 0 12px; width:12px; height:12px; background:var(--yellow); box-shadow:3px 3px 0 var(--line); }
+    .eyebrow span { white-space:nowrap; }
     .hero h1 { max-width:650px; font-size:clamp(42px,4.5vw,60px); line-height:1.16; letter-spacing:-.07em; margin:22px 0 24px; font-weight:1000; text-wrap:balance; }
     .hero h1 em { color:var(--yellow); font-style:normal; white-space:nowrap; }
     .hero-lead { max-width:560px; color:#e7f4ff; font-size:18px; margin:0 0 31px; }
@@ -64,16 +65,21 @@
     .card-number { display:inline-grid; place-items:center; width:37px; height:37px; background:var(--yellow); border:2px solid var(--line); font-size:13px; font-weight:1000; }
     .challenge-card h3 { font-size:22px; line-height:1.35; margin:23px 0 9px; color:var(--navy); }
     .challenge-card p { color:var(--muted); margin:0; font-size:15px; }
-    .difference-note { margin-top:32px; padding:25px 29px; background:var(--yellow); border:3px solid var(--line); box-shadow:7px 7px 0 var(--line); }
-    .difference-note h3 { margin:0 0 9px; color:var(--navy); font-size:22px; line-height:1.35; }
-    .difference-note p { margin:0; max-width:940px; font-size:16px; }
+    .difference-note { margin-top:32px; padding:28px; background:var(--yellow); border:3px solid var(--line); box-shadow:7px 7px 0 var(--line); }
+    .difference-note h3 { margin:0 0 9px; color:var(--navy); font-size:25px; line-height:1.35; text-wrap:balance; }
+    .difference-note > p { margin:0 0 20px; max-width:940px; font-size:16px; }
+    .difference-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .difference-card { padding:20px 22px; background:white; border:2px solid var(--line); }
+    .difference-card h4 { margin:0 0 9px; color:var(--navy); font-size:17px; }
+    .difference-card ul { margin:0; padding-left:20px; }
+    .difference-card li + li { margin-top:6px; }
     .blue-panel { background:var(--sky); border-block:3px solid var(--line); }
     .service-intro { display:flex; align-items:end; justify-content:space-between; gap:30px; }
     .service-intro .section-head { margin-bottom:32px; }
     .service-intro aside { margin-bottom:35px; max-width:310px; padding:16px 18px; border-left:5px solid var(--orange); background:white; font-size:14px; font-weight:700; color:var(--ink); }
     .service-list { display:grid; gap:17px; }
     .service-row { display:grid; grid-template-columns:105px 1fr 1.1fr; align-items:center; gap:30px; padding:28px 32px; background:white; border:3px solid var(--line); }
-    .service-code { display:grid; place-items:center; min-height:78px; border:3px solid var(--line); background:var(--yellow); color:var(--navy); font:1000 29px/1 ui-monospace,"Cascadia Mono",monospace; box-shadow:5px 5px 0 var(--line); }
+    .service-code { display:grid; place-items:center; min-height:78px; border:3px solid var(--line); background:var(--yellow); color:var(--navy); font:1000 25px/1 "Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif; box-shadow:5px 5px 0 var(--line); }
     .service-row:nth-child(2) .service-code { background:#86e8ec; }
     .service-row:nth-child(3) .service-code { background:#ffc199; }
     .service-title { font-size:23px; line-height:1.25; color:var(--navy); margin:0; font-weight:950; }
@@ -105,6 +111,7 @@
     .faq-items summary:after { content:"＋"; color:var(--blue-deep); font-size:24px; line-height:1; }
     .faq-items details[open] summary:after { content:"−"; }
     .faq-items p { margin:0 0 20px; color:var(--muted); font-size:15px; }
+    .faq-items p a { color:var(--blue-deep); text-decoration:underline; text-underline-offset:3px; font-weight:800; }
     .contact { background:var(--yellow); border-top:4px solid var(--line); }
     .contact-grid { display:grid; grid-template-columns:1fr .95fr; gap:70px; align-items:start; }
     .contact .kicker { color:var(--navy); }
@@ -119,8 +126,11 @@
     .field textarea { resize:vertical; min-height:89px; }
     .form-actions { display:flex; flex-wrap:wrap; gap:13px; align-items:center; margin-top:20px; }
     .form-note { font-size:12px!important; margin:14px 0 0!important; }
-    .copy-status { min-height:20px; font-size:13px; font-weight:800; color:var(--blue-deep)!important; margin:10px 0 0!important; }
+    .form-status { min-height:20px; font-size:13px; font-weight:800; color:var(--blue-deep)!important; margin:10px 0 0!important; }
+    .form-status.is-error { color:#a32121!important; }
     .site-footer { background:var(--navy); color:#dce6ff; padding:33px 0; }
+    .mobile-line { display:none; }
+    .mobile-line.is-hidden { display:none; }
     .footer-grid { display:flex; align-items:center; justify-content:space-between; gap:20px; font-size:13px; }
     .footer-grid strong { color:white; font-size:18px; }
     .footer-grid a { text-decoration:underline; text-underline-offset:4px; }
@@ -148,12 +158,15 @@
       .hero-lead { font-size:16px; }
       .section { padding-block:70px; }
       .challenge-grid { grid-template-columns:1fr; }
+      .difference-grid { grid-template-columns:1fr; }
       .service-intro { display:block; }
       .service-intro aside { max-width:none; }
       .faq-grid { gap:25px; }
       .ticker-line { gap:5px 16px; }
       .ticker-line span:not(:last-child):after { margin-left:16px; }
       .footer-grid { flex-direction:column; align-items:start; }
+      body { padding-bottom:calc(76px + env(safe-area-inset-bottom)); }
+      .mobile-line { display:flex; justify-content:center; align-items:center; position:fixed; z-index:25; left:16px; right:16px; bottom:calc(10px + env(safe-area-inset-bottom)); min-height:52px; border:2px solid var(--line); background:white; color:var(--navy); box-shadow:4px 4px 0 var(--line); font-weight:900; }
     }
     @media(max-width:470px) {
       .wrap { width:calc(100% - 32px); max-width:1180px; }
@@ -191,7 +204,7 @@
     },
     {
       "@type": "Question",
-      "name": "SEO 大概要多久才會看到效果？",
+      "name": "改完 Google 商家資料，多久會看到效果？",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "沒有固定時間。先記錄目前的搜尋曝光、網站點擊、來電或路線等數字，完成資料與內容調整後持續比較；結果會因店家現況、競爭與顧客位置而不同。"
@@ -207,7 +220,7 @@
     },
     {
       "@type": "Question",
-      "name": "沒有網站，也能先做店家搜尋健檢嗎？",
+      "name": "沒有網站，也能先做自我健檢嗎？",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "可以。先檢查 Google 地圖上的店家資料、社群頁面、LINE 聯絡入口和其他公開資訊，再依實際需求判斷是否需要網站。"
@@ -215,10 +228,18 @@
     },
     {
       "@type": "Question",
-      "name": "Google 地圖資料自己就能更新，為什麼還要做健檢？",
+      "name": "Google 地圖資料自己就能更新，為什麼還需要協助？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "營業時間、照片和評論回覆由店家自己維護最即時。健檢則從顧客會用的搜尋問法出發，比對 Google 地圖、網站與其他公開頁面的資訊，找出不一致或聯絡不便的地方，再決定先改善什麼。"
+        "text": "營業時間、照片和評論回覆由店家自己維護最即時。Scout_Lab 可從顧客會用的搜尋問法出發，比對 Google 地圖、網站與其他公開頁面的資訊，找出不一致或聯絡不便的地方，再決定先改善什麼。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Google 地圖上突然找不到我的店，怎麼辦？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "先確認是特定搜尋詞排名較後、資料被標成停業，還是商家檔案被停權。若收到停權通知，Google 提醒同一商家不要另建新檔案，且申訴只能提交一次；請先核對商家名稱與地址一致的證明文件，再依官方流程提交。我們可以協助釐清是哪一種狀況。詳見 Google 官方申訴說明。"
       }
     }
   ]
@@ -235,7 +256,7 @@
       </a>
       <button class="menu-button" type="button" aria-label="開啟選單" aria-controls="primary-nav" aria-expanded="false">☰</button>
       <nav class="nav" id="primary-nav" aria-label="主要選單">
-        <a href="#about">為什麼搜不到</a><a href="#services">健檢項目</a><a href="#method">怎麼開始</a><a href="#faq">常見問題</a><a class="nav-cta" href="#contact">聊聊你的店 →</a>
+        <a href="#about">為什麼搜不到</a><a href="#services">我們會看什麼</a><a href="#method">怎麼開始</a><a href="#faq">常見問題</a><a class="nav-cta" href="#contact">聊聊你的店 →</a>
       </nav>
     </div>
   </header>
@@ -243,49 +264,85 @@
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="wrap hero-grid">
         <div>
-          <span class="eyebrow">Local SEO · Google Maps · AI Search</span>
-          <h1 id="hero-title">客人搜「附近的店」，<br>能<em>找到你</em>嗎？</h1>
-          <p class="hero-lead">不論客人在 Google 地圖搜「附近的早午餐」，還是問 AI「信義區美甲推薦」，Scout_Lab 都從你的店家資料與公開頁面開始盤點，找出資訊落差和聯絡卡點。沒有網站，也能先從 Google 地圖開始。</p>
-          <div class="hero-actions"><a class="button" href="check/">店家 1 分鐘搜尋健檢 <span aria-hidden="true">→</span></a><a class="text-link" href="#services">看健檢項目 →</a></div>
+          <span class="eyebrow"><span>Google 地圖</span><span>店家資訊</span><span>AI 搜尋</span></span>
+          <h1 id="hero-title">客人在 Google 地圖<br>搜尋你的服務，<br><em>找得到你嗎？</em></h1>
+          <p class="hero-lead">Google 地圖找不到、排在很後面，還是資料被改過了？Scout_Lab 協助實體店家與個人工作室，從 Google 商家資料、現有公開頁面與 AI 回答盤點，找出資訊落差和聯絡卡點。沒有網站，也能先開始。</p>
+          <div class="hero-actions"><a class="button" href="check/">店家 1 分鐘自我健檢 <span aria-hidden="true">→</span></a><a class="text-link" href="#services">看我們會看什麼 →</a></div>
         </div>
         <div class="hero-art">
-          <div class="hero-art-window"><img src="assets/scout-scenes.png" alt="Scout_Lab 像素風小恐龍拿著放大鏡探索搜尋與 AI 資訊" width="1555" height="1011"></div>
+          <div class="hero-art-window"><img src="scout-scenes.png" alt="Scout_Lab 像素風小恐龍拿著放大鏡探索搜尋與 AI 資訊" width="1555" height="1011"></div>
           <span class="art-note">SCOUT MORE. FIND MORE.</span>
         </div>
       </div>
     </section>
-    <div class="ticker" aria-label="服務關鍵字"><div class="ticker-line"><span>GOOGLE MAPS</span><span>BUSINESS PROFILE</span><span>AI OVERVIEWS</span><span>LOCAL SEO</span></div></div>
+    <div class="ticker" aria-label="服務關鍵字"><div class="ticker-line"><span>GOOGLE 地圖</span><span>店家資料</span><span>公開資訊</span><span>AI 搜尋</span></div></div>
     <section class="section wrap" id="about" aria-labelledby="about-title">
       <div class="section-head"><span class="kicker">01 / The challenge</span><h2 id="about-title">為什麼客人在 Google 上<br>找不到你的店？</h2><p>有時是營業時間或服務資料不完整，有時是不同平台的說法不一致，也可能和顧客所在位置有關。先看清楚現況，才知道哪裡值得優先改善。</p></div>
       <div class="challenge-grid">
-        <article class="challenge-card"><span class="card-number">01</span><h3>Google 地圖搜不到，或排在很後面</h3><p>店家資料與服務項目是否完整，值得先檢查；在地搜尋結果也會受到顧客位置等因素影響。</p></article>
+        <article class="challenge-card"><span class="card-number">01</span><h3>Google 地圖上找不到我的店？</h3><p>可能是資料不完整、排在很後面，也可能是店家資料顯示停業或商家檔案被停權。先分清楚是哪一種，才知道下一步怎麼處理。</p></article>
         <article class="challenge-card"><span class="card-number">02</span><h3>有人找到店，卻不知道怎麼聯絡</h3><p>商品或服務、價格與聯絡方式不清楚，客人看完仍不知道下一步怎麼做。</p></article>
         <article class="challenge-card"><span class="card-number">03</span><h3>地址、電話、營業時間各處不一樣</h3><p>Google 地圖、網站、社群或預約平台的資料不同，客人容易看到過期或互相矛盾的資訊。</p></article>
       </div>
-      <div class="difference-note"><h3>Google 地圖自己就能更新，為什麼還要做健檢？</h3><p>營業時間、照片與評論回覆，店家自己維護最即時。Scout_Lab 想協助的是從顧客會用的搜尋問法出發，比對各處公開資訊，找出店家自己搜尋時不容易發現的落差，整理先修哪裡的順序。</p></div>
+      <div class="difference-note"><h3>Google 地圖自己就能更新，為什麼還需要我們？</h3><p>店家資料由你自己維護最即時；Scout_Lab 的規劃重點，是幫你從顧客的角度找出各處資訊與聯絡流程的落差。</p><div class="difference-grid"><div class="difference-card"><h4>你自己先做</h4><ul><li>更新營業時間、地址與電話</li><li>上傳近期照片、回覆真實評論</li><li>確認商品或服務資訊是否正確</li></ul></div><div class="difference-card"><h4>Scout_Lab 可協助盤點</h4><ul><li>比對 Google 地圖、網站與其他公開頁面</li><li>用顧客會問的問題檢查內容是否清楚</li><li>走一遍聯絡、預約或下單流程，整理先修順序</li></ul></div></div></div>
     </section>
     <section class="blue-panel" id="services" aria-labelledby="services-title">
       <div class="section wrap">
-        <div class="service-intro"><div class="section-head"><span class="kicker">02 / What we check</span><h2 id="services-title">在地 SEO、AI 搜尋、常見問題：<br>三個方向一起健檢。</h2><p>從客人實際會打的關鍵字、會問的問題出發，檢查你的 Google 地圖店家資料，以及現有的網站、社群或預約頁，再決定先整理哪一塊。</p></div><aside>SEO、GEO、AEO 分不清楚？簡單說：SEO 讓 Google 更容易理解你的店，GEO 整理 AI 可能參考的公開資訊，AEO 清楚回答客人常問的問題。三者都不保證排名，也不保證一定被 AI 推薦。</aside></div>
+        <div class="service-intro"><div class="section-head"><span class="kicker">02 / What we check</span><h2 id="services-title">我們會幫你看<br>這三件事。</h2><p>從客人實際會打的關鍵字、會問的問題出發，檢查你的 Google 地圖店家資料，以及現有的網站、社群或預約頁，再決定先整理哪一塊。</p></div><aside>先不用弄懂專有名詞。把 Google 地圖資料、各處公開資訊與聯絡入口看清楚，才知道下一步值得改什麼。</aside></div>
         <div class="service-list">
-          <article class="service-row"><div class="service-code">SEO</div><h3 class="service-title">在地 SEO：讓 Google 搜尋和地圖找得到你<small>Google 商家檔案 · 在地關鍵字 · 網頁標題</small></h3><p>檢查商家檔案的類別、服務項目與照片，以及官網有沒有寫進「地區＋服務」這類客人真的會搜的字，例如「台中 寵物美容」「板橋 牙醫 推薦」。</p></article>
-          <article class="service-row"><div class="service-code">GEO</div><h3 class="service-title">AI 搜尋優化：讓公開資訊更清楚一致<small>店家基本資料 · 跨平台一致 · 可查證來源</small></h3><p>比對 Google 地圖、網站與其他公開頁面的店名、地址、服務與特色；如果 AI 引用到舊資訊，也比較容易找出需要修正的來源。</p></article>
-          <article class="service-row"><div class="service-code">AEO</div><h3 class="service-title">常見問題頁：直接回答客人想問的事<small>價格 · 預約方式 · 停車交通</small></h3><p>把「多少錢」「要不要預約」「有沒有停車位」「適合帶小孩嗎」這些常見問題寫成清楚答案，讓客人在搜尋結果裡就能判斷要不要來。</p></article>
+          <article class="service-row"><div class="service-code">地圖</div><h3 class="service-title">Google 地圖找不找得到你<small>Google 商家類別 · 服務項目 · 照片</small></h3><p>檢查 Google 商家資料是否完整，也看看客人用「地區＋服務」搜尋時，找到的是哪一種結果。</p></article>
+          <article class="service-row"><div class="service-code">資料</div><h3 class="service-title">各處資料一不一致<small>Google 商家 · 網站 · 社群 · 預約平台</small></h3><p>比對店名、地址、電話、營業時間與服務說明；再留意 AI 回答有沒有引用到過期或錯誤的公開資訊。</p></article>
+          <article class="service-row"><div class="service-code">聯絡</div><h3 class="service-title">客人找到後，會不會聯絡你<small>價格 · 預約方式 · 聯絡入口</small></h3><p>確認客人找不找得到價格或計價方式、常見問題的答案，以及聯絡、預約或下單的下一步。</p></article>
         </div>
       </div>
     </section>
     <section class="section wrap visual-section" aria-labelledby="visual-title">
-      <figure class="visual-frame"><a href="assets/search-guide.png" target="_blank" rel="noopener noreferrer" aria-label="開啟 Scout_Lab 像素風四格指南大圖"><img src="assets/search-guide.png" loading="lazy" alt="Scout_Lab 像素風四格練習素材，展示 AI 搜尋、Google 搜尋、網站流量分析與 SEO／GEO／AEO 改善方向" width="1254" height="1254"></a><figcaption>像素風練習素材 · 點圖放大 ↗</figcaption></figure>
-      <div class="visual-copy"><span class="kicker">03 / Start with a check-up</span><h2 id="visual-title">不知道 SEO 從哪開始？<br>先做一次現況健檢。</h2><p>每家店的預算、人力和網站狀況都不同，不需要一次全部做完。先看清楚問題卡在哪裡，再挑最值得先做的一兩件事。（目前為課堂練習頁，正式服務內容會依實際需求調整。）</p><ul><li>客人實際會用哪些關鍵字，找到你這類型的店？</li><li>Google 商家、官網、社群上的地址電話一致嗎？</li><li>哪些客人常問的問題，網站上還沒有答案？</li><li>改完之後，要看曝光、點擊、來電還是導航次數？</li></ul></div>
+      <figure class="visual-frame"><a href="search-guide.png" target="_blank" rel="noopener noreferrer" aria-label="開啟 Scout_Lab 像素風四格指南大圖"><img src="search-guide.png" loading="lazy" alt="Scout_Lab 像素風四格練習素材，展示 Google 地圖、AI 搜尋與店家資訊整理方向" width="1254" height="1254"></a><figcaption>像素風練習素材 · 點圖放大 ↗</figcaption></figure>
+      <div class="visual-copy"><span class="kicker">03 / Start with a check-up</span><h2 id="visual-title">不知道從哪裡開始？<br>先看清楚現況。</h2><p>每家店的預算、人力和網站狀況都不同，不需要一次全部做完。先看清楚問題卡在哪裡，再挑最值得先做的一兩件事。（目前為課堂練習頁，正式服務內容會依實際需求調整。）</p><ul><li>客人實際會用哪些關鍵字，找到你這類型的店？</li><li>Google 商家、官網、社群上的地址電話一致嗎？</li><li>哪些客人常問的問題，網站上還沒有答案？</li><li>改完之後，要看曝光、點擊、來電還是導航次數？</li></ul></div>
     </section>
-    <section class="route" id="method" aria-labelledby="method-title"><div class="section wrap"><div class="section-head"><span class="kicker">04 / The route</span><h2 id="method-title">店家 SEO 怎麼開始？<br>四個步驟走一遍。</h2><p>從健檢到追蹤成效，每一步都知道為什麼要做。以下是課堂頁面的示意流程，可隨正式服務規劃調整。</p></div><div class="route-grid"><article class="route-step"><b>01</b><h3>現況健檢</h3><p>了解你的客群、主要服務，以及 Google 商家檔案與官網目前的狀況。</p></article><article class="route-step"><b>02</b><h3>找關鍵字與問題</h3><p>整理客人搜尋時用的字詞，和他們最常問的問題。</p></article><article class="route-step"><b>03</b><h3>排出優先清單</h3><p>依你的時間和預算，決定先改哪個頁面、補哪些資料。</p></article><article class="route-step"><b>04</b><h3>追蹤成效</h3><p>用 Google 商家檔案成效報告、Search Console 等數據回頭檢查並調整。</p></article></div></div></section>
-    <section class="section wrap faq-grid" id="faq" aria-labelledby="faq-title"><div class="section-head"><span class="kicker">05 / Good questions</span><h2 id="faq-title">店家 SEO 常見問題</h2><p>不用先弄懂所有縮寫，先把老闆最常問的幾件事說清楚。</p></div><div class="faq-items"><details><summary>SEO、GEO、AEO 有什麼差別？一定要全部做嗎？</summary><p>SEO 協助 Google 理解你的店與服務，GEO 著重整理 AI 可能參考的公開資訊，AEO 把客人常問的問題寫成清楚答案。不需要一次全做，先檢查 Google 地圖上的店家資料和現有公開頁面。</p></details><details><summary>怎麼讓 ChatGPT 或 Google AI 推薦我的店？</summary><p>沒有人能保證 AI 推薦。可以先檢查店名、地址、服務等公開資訊是否正確一致，修正過期來源，再觀察不同問題下 AI 實際怎麼描述你的店。</p></details><details><summary>SEO 大概要多久才會看到效果？</summary><p>沒有固定時間。先記錄目前的搜尋曝光、網站點擊、來電或路線等數字，完成資料與內容調整後持續比較；結果會因店家現況、競爭與顧客位置而不同。</p></details><details><summary>沒有行銷人員、也不太懂網站，可以自己做嗎？</summary><p>可以。先自己更新營業時間、照片、服務資訊並回覆真實評論；若有網站，再把常見問題寫清楚。不必一次做完所有項目。</p></details><details><summary>沒有網站，也能先做店家搜尋健檢嗎？</summary><p>可以。先檢查 Google 地圖上的店家資料、社群頁面、LINE 聯絡入口和其他公開資訊，再依實際需求判斷是否需要網站。</p></details><details><summary>Google 地圖資料自己就能更新，為什麼還要做健檢？</summary><p>營業時間、照片和評論回覆由店家自己維護最即時。健檢則從顧客會用的搜尋問法出發，比對 Google 地圖、網站與其他公開頁面的資訊，找出不一致或聯絡不便的地方，再決定先改善什麼。</p></details></div></section>
-    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="section wrap contact-grid"><div><span class="kicker">06 / Let's explore</span><h2 id="contact-title">想知道你的店，<br>為什麼搜不到？</h2><p>準備好店家網址或 Google 地圖連結，加上你最想解決的問題，聊起來會更具體。目前這是課堂展示頁；LINE OA 作為練習諮詢入口，正式服務流程仍在規劃中。</p><a class="button button-white" href="https://line.me/R/ti/p/%40280atokq" target="_blank" rel="noopener noreferrer">加 Scout_Lab LINE 聊聊 ↗</a></div><div class="contact-card"><h3>填一張店家健檢卡</h3><p>填完可複製內容，自行貼到 LINE 傳給我們。資料只留在你的瀏覽器，不會從網站送出。</p><form id="inquiry-form"><div class="field"><label for="shop-url">店家網站或 Google 地圖連結（選填）</label><input id="shop-url" type="url" inputmode="url" placeholder="https://example.com"></div><div class="field"><label for="focus">最想先解決的問題</label><select id="focus"><option value="Google 地圖／商家檔案搜不到">Google 地圖／商家檔案搜不到</option><option value="ChatGPT、AI 搜尋裡的店家資訊">ChatGPT、AI 搜尋裡的店家資訊</option><option value="網站沒人詢問，內容不知道怎麼寫">網站沒人詢問，內容不知道怎麼寫</option><option value="還不確定，想先做健檢">還不確定，想先做健檢</option></select></div><div class="field"><label for="challenge">目前遇到的狀況（選填）</label><textarea id="challenge" placeholder="例如：在 Google 地圖搜「附近的早午餐」找不到我們，或網站有人看卻沒人預約..."></textarea></div><div class="form-actions"><button class="button" type="submit">複製健檢卡 ↗</button></div><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p><p class="form-note">此功能僅複製文字；開啟 LINE 後仍需由你自行貼上與傳送。</p></form></div></div></section>
+    <section class="route" id="method" aria-labelledby="method-title"><div class="section wrap"><div class="section-head"><span class="kicker">04 / The route</span><h2 id="method-title">Google 商家優化怎麼做？<br>四個步驟走一遍。</h2><p>從盤點到追蹤成效，每一步都知道為什麼要做。以下是課堂頁面的示意流程，可隨正式服務規劃調整。</p></div><div class="route-grid"><article class="route-step"><b>01</b><h3>現況盤點</h3><p>了解你的客群、主要服務，以及 Google 商家資料與公開頁面目前的狀況。</p></article><article class="route-step"><b>02</b><h3>找關鍵字與問題</h3><p>整理客人搜尋時用的字詞，和他們最常問的問題。</p></article><article class="route-step"><b>03</b><h3>排出優先清單</h3><p>依你的時間和預算，決定先改哪個頁面、補哪些資料。</p></article><article class="route-step"><b>04</b><h3>追蹤成效</h3><p>用 Google 商家檔案成效報告、Search Console 等數據回頭檢查並調整。</p></article></div></div></section>
+    <section class="section wrap faq-grid" id="faq" aria-labelledby="faq-title">
+      <div class="section-head"><span class="kicker">05 / Good questions</span><h2 id="faq-title">Google 商家與地圖常見問題</h2><p>不用先弄懂所有縮寫，先把老闆最常問的幾件事說清楚。</p></div>
+      <div class="faq-items">
+        <details><summary>SEO、GEO、AEO 有什麼差別？一定要全部做嗎？</summary><p>SEO 協助 Google 理解你的店與服務，GEO 著重整理 AI 可能參考的公開資訊，AEO 把客人常問的問題寫成清楚答案。不需要一次全做，先檢查 Google 地圖上的店家資料和現有公開頁面。</p></details>
+        <details><summary>怎麼讓 ChatGPT 或 Google AI 推薦我的店？</summary><p>沒有人能保證 AI 推薦。可以先檢查店名、地址、服務等公開資訊是否正確一致，修正過期來源，再觀察不同問題下 AI 實際怎麼描述你的店。</p></details>
+        <details><summary>改完 Google 商家資料，多久會看到效果？</summary><p>沒有固定時間。先記錄目前的搜尋曝光、網站點擊、來電或路線等數字，完成資料與內容調整後持續比較；結果會因店家現況、競爭與顧客位置而不同。</p></details>
+        <details><summary>沒有行銷人員、也不太懂網站，可以自己做嗎？</summary><p>可以。先自己更新營業時間、照片、服務資訊並回覆真實評論；若有網站，再把常見問題寫清楚。不必一次做完所有項目。</p></details>
+        <details><summary>沒有網站，也能先做自我健檢嗎？</summary><p>可以。先檢查 Google 地圖上的店家資料、社群頁面、LINE 聯絡入口和其他公開資訊，再依實際需求判斷是否需要網站。</p></details>
+        <details><summary>Google 地圖資料自己就能更新，為什麼還需要協助？</summary><p>營業時間、照片和評論回覆由店家自己維護最即時。Scout_Lab 可從顧客會用的搜尋問法出發，比對 Google 地圖、網站與其他公開頁面的資訊，找出不一致或聯絡不便的地方，再決定先改善什麼。</p></details>
+        <details><summary>Google 地圖上突然找不到我的店，怎麼辦？</summary><p>先確認是特定搜尋詞排名較後、資料被標成停業，還是商家檔案被停權。若收到停權通知，Google 提醒同一商家不要另建新檔案，且申訴只能提交一次；請先核對商家名稱與地址一致的證明文件，再依官方流程提交。我們可以協助釐清是哪一種狀況。詳見 <a href="https://support.google.com/business/answer/4569145?hl=zh-Hant" target="_blank" rel="noopener noreferrer">Google 官方申訴說明</a>。</p></details>
+      </div>
+    </section>
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="section wrap contact-grid">
+        <div><span class="kicker">06 / Let's explore</span><h2 id="contact-title">想知道你的店，<br>為什麼搜不到？</h2><p>留下聯絡資料、想談的問題與方便的日期，我們會再與你確認諮詢時間。也可以先準備店家網址或 Google 地圖連結，讓討論更具體。</p><a class="button button-white" href="https://line.me/R/ti/p/%40280atokq" target="_blank" rel="noopener noreferrer">加 Scout_Lab LINE 聊聊 ↗</a></div>
+        <div class="contact-card">
+          <h3>預約諮詢</h3><p>填寫後會送出預約需求，我們將透過 Email 與你確認。送出不代表時段已確定。</p>
+          <form id="booking-form">
+            <div class="field"><label for="customer-name">稱呼 *</label><input id="customer-name" name="customer_name" autocomplete="name" maxlength="100" required></div>
+            <div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
+            <div class="field"><label for="phone">電話（選填）</label><input id="phone" name="phone" type="tel" autocomplete="tel" minlength="6" maxlength="30"></div>
+            <div class="field"><label for="preferred-date">希望諮詢日期 *</label><input id="preferred-date" name="preferred_date" type="date" required></div>
+            <div class="field"><label for="preferred-time-slot">方便時段 *</label><select id="preferred-time-slot" name="preferred_time_slot" required><option value="">請選擇</option><option value="上午">上午</option><option value="下午">下午</option><option value="晚上">晚上</option></select></div>
+            <div class="field"><label for="shop-url">店家網站或 Google 地圖連結（選填）</label><input id="shop-url" name="shop_url" type="url" inputmode="url" maxlength="500" placeholder="https://example.com"></div>
+            <div class="field"><label for="focus">最想先解決的問題 *</label><select id="focus" name="focus" required><option value="Google 地圖／商家檔案搜不到">Google 地圖／商家檔案搜不到</option><option value="ChatGPT、AI 搜尋裡的店家資訊">ChatGPT、AI 搜尋裡的店家資訊</option><option value="網站沒人詢問，內容不知道怎麼寫">網站沒人詢問，內容不知道怎麼寫</option><option value="還不確定，想先聊聊現況">還不確定，想先聊聊現況</option></select></div>
+            <div class="field"><label for="challenge">目前遇到的狀況（選填）</label><textarea id="challenge" name="challenge" maxlength="2000" placeholder="例如：在 Google 地圖搜「附近的早午餐」找不到我們..."></textarea></div>
+            <div class="form-actions"><button class="button" type="submit">送出預約需求 →</button></div><p class="form-status" id="booking-status" role="status" aria-live="polite"></p><p class="form-note">送出後，以上資料會儲存在 Scout_Lab 的資料庫，僅用於聯繫與安排本次諮詢。</p>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="site-footer"><div class="wrap footer-grid"><div><strong>Scout_Lab</strong><br>TTFN.Studio 旗下店家在地搜尋曝光服務品牌 · 頁面規劃練習版</div><div>© <span id="year">2026</span> TTFN.Studio　<a href="#top">回到頂部 ↑</a></div></div></footer>
+  <a class="mobile-line" href="https://line.me/R/ti/p/%40280atokq" target="_blank" rel="noopener noreferrer">加 Scout_Lab LINE 聊聊 ↗</a>
   <script>
     const menuButton = document.querySelector('.menu-button');
     const nav = document.querySelector('.nav');
+    const mobileLine = document.querySelector('.mobile-line');
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => {
+        mobileLine.classList.toggle('is-hidden', entry.isIntersecting);
+      }).observe(document.querySelector('.contact .button-white'));
+    }
     menuButton.addEventListener('click', () => {
       const open = nav.classList.toggle('open');
       menuButton.setAttribute('aria-expanded', String(open));
@@ -297,28 +354,61 @@
       menuButton.setAttribute('aria-label', '開啟選單');
     }));
     document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('inquiry-form').addEventListener('submit', async event => {
+    const bookingForm = document.getElementById('booking-form');
+    const bookingDate = document.getElementById('preferred-date');
+    const bookingStatus = document.getElementById('booking-status');
+    const bookingButton = bookingForm.querySelector('button[type="submit"]');
+    const supabaseUrl = 'https://rbljfnakfqfcsirsyrjg.supabase.co';
+    const supabasePublishableKey = 'sb_publishable_gPWexuD2fDA0mAu8qJI4jg_hpMdqzgt';
+    const today = new Date();
+    bookingDate.min = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+    bookingForm.addEventListener('submit', async event => {
       event.preventDefault();
-      const url = document.getElementById('shop-url').value.trim();
-      const focus = document.getElementById('focus').value;
-      const challenge = document.getElementById('challenge').value.trim();
-      const summary = `Scout_Lab 店家健檢卡\n店家頁面：${url || '稍後提供'}\n想了解：${focus}\n目前問題：${challenge || '想先聊聊現況'}`;
-      const status = document.getElementById('copy-status');
+      const currentDate = new Date();
+      bookingDate.min = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+      if (!bookingForm.reportValidity()) return;
+      const formData = new FormData(bookingForm);
+      if (!formData.get('customer_name').trim()) {
+        document.getElementById('customer-name').setCustomValidity('請填寫稱呼。');
+        document.getElementById('customer-name').reportValidity();
+        return;
+      }
+      const booking = {
+        customer_name: formData.get('customer_name').trim(),
+        email: formData.get('email').trim(),
+        phone: formData.get('phone').trim() || null,
+        preferred_date: formData.get('preferred_date'),
+        preferred_time_slot: formData.get('preferred_time_slot'),
+        shop_url: formData.get('shop_url').trim() || null,
+        focus: formData.get('focus'),
+        challenge: formData.get('challenge').trim() || null
+      };
+      bookingButton.disabled = true;
+      bookingButton.textContent = '送出中…';
+      bookingStatus.classList.remove('is-error');
+      bookingStatus.textContent = '正在送出預約需求…';
       try {
-        await navigator.clipboard.writeText(summary);
-        status.textContent = '已複製健檢卡，可以貼到 LINE 對話中。';
+        const response = await fetch(`${supabaseUrl}/rest/v1/consultation_bookings`, {
+          method: 'POST',
+          headers: {
+            apikey: supabasePublishableKey,
+            'Content-Type': 'application/json',
+            Prefer: 'return=minimal'
+          },
+          body: JSON.stringify(booking)
+        });
+        if (!response.ok) throw new Error(`Booking request failed: ${response.status}`);
+        bookingForm.reset();
+        bookingStatus.textContent = '已收到你的預約需求，我們會透過 Email 與你確認時間。';
       } catch {
-        const helper = document.createElement('textarea');
-        helper.value = summary;
-        helper.style.position = 'fixed';
-        helper.style.opacity = '0';
-        document.body.appendChild(helper);
-        helper.select();
-        const copied = document.execCommand('copy');
-        helper.remove();
-        status.textContent = copied ? '已複製健檢卡，可以貼到 LINE 對話中。' : '瀏覽器未允許複製；請手動整理上述資訊後傳到 LINE。';
+        bookingStatus.classList.add('is-error');
+        bookingStatus.textContent = '送出失敗，請稍後再試，或透過 LINE 聯絡我們。';
+      } finally {
+        bookingButton.disabled = false;
+        bookingButton.textContent = '送出預約需求 →';
       }
     });
+    document.getElementById('customer-name').addEventListener('input', event => event.target.setCustomValidity(''));
   </script>
 </body>
 </html>
