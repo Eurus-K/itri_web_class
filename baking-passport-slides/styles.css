@@ -173,12 +173,64 @@ body {
   left: 478px;
   top: 272px;
   width: 1015px;
-  height: auto;
+  height: 794px;
   user-select: none;
   pointer-events: none;
   filter:
     drop-shadow(8px 14px 13px rgb(21 25 21 / .42))
     drop-shadow(21px 29px 26px rgb(21 25 21 / .28));
+}
+
+.cover-phone-art {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 1418px;
+  height: 1109px;
+  transform: scale(.715797);
+  transform-origin: top left;
+}
+
+.cover-screen-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.cover-screen-clip-left {
+  clip-path: polygon(504px 162px, 534px 168px, 548px 180px, 560px 198px, 678px 546px, 604px 820px, 606px 859px, 626px 891px, 649px 912px, 670px 918px, 771px 932px, 774px 949px, 768px 961px, 749px 974px, 502px 1010px, 485px 1010px, 468px 1004px, 452px 989px, 442px 973px, 352px 680px, 208px 251px, 202px 213px, 213px 194px, 229px 188px);
+}
+
+.cover-screen-clip-right {
+  clip-path: polygon(876px 44px, 1175px 66px, 1193px 74px, 1204px 84px, 1208px 96px, 1206px 123px, 1022px 875px, 1006px 902px, 990px 914px, 975px 918px, 923px 914px, 658px 878px, 637px 868px, 630px 861px, 622px 841px, 630px 790px, 708px 515px, 820px 91px, 828px 71px, 841px 58px, 854px 50px);
+}
+
+.cover-screen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 588px;
+  height: 1050px;
+  background-color: #fff8df;
+  background-repeat: no-repeat;
+  background-size: 588px 1280px;
+  transform-origin: top left;
+}
+
+.cover-screen-left {
+  background-image: url("./assets/cover-home-screen.jpg");
+  transform: matrix3d(.655824692, -.050747658, 0, .000001881, .18229947, .709231341, 0, -.000110171, 0, 0, 1, 0, 180, 175, 0, 1);
+}
+
+.cover-screen-right {
+  background-image: url("./assets/cover-collection-screen.jpg");
+  transform: matrix3d(.620294008, .055205283, 0, -.000071975, -.26865417, .728804546, 0, -.000087307, 0, 0, 1, 0, 818, 25, 0, 1);
+}
+
+.cover-phone-frame {
+  position: absolute;
+  inset: 0;
+  width: 1418px;
+  height: 1109px;
 }
 
 .slide-journey {
