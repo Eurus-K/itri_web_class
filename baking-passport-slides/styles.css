@@ -127,44 +127,55 @@ body {
   width: max-content;
   margin: 0;
   color: var(--cover-ivory);
-  font-size: 48px;
+  font-size: 44px;
   font-weight: 800;
-  line-height: 1.14;
+  line-height: 1.18;
   letter-spacing: .01em;
   white-space: nowrap;
 }
 
-.cover-features {
+.cover-benefits {
   position: absolute;
   z-index: 3;
   right: 72px;
-  top: 435px;
-  width: 315px;
+  top: 428px;
+  width: 420px;
+  color: var(--cover-ivory);
+}
+
+.cover-benefits h2 {
+  margin: 0 0 20px;
+  color: var(--cover-sage);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: .04em;
+}
+
+.cover-benefits ol {
   margin: 0;
   padding: 0;
   list-style: none;
-  color: var(--cover-ivory);
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 1.25;
 }
 
-.cover-features li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 0 17px;
+.cover-benefits li {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 12px;
+  min-height: 84px;
+  padding: 20px 0 19px;
+  border-top: 1px solid rgb(221 232 201 / .38);
+  font-size: 23px;
+  font-weight: 600;
+  line-height: 1.38;
 }
 
-.cover-features li:not(:last-child) { border-bottom: 1px solid rgb(221 232 201 / .38); }
-
-.cover-features li::after {
-  content: "";
-  flex: 0 0 7px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgb(221 232 201 / .72);
+.cover-benefit-number {
+  color: var(--cover-sage);
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: .02em;
 }
 
 .cover-phones {
