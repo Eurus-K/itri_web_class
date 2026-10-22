@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#075638" />
+    <title>烘焙體驗護照｜企業專題簡報</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <main id="stage" class="stage" aria-label="烘焙體驗護照簡報">
+      <div id="deck" class="deck">
+        <section class="slide slide-cover is-active" aria-label="第 1 頁：提案封面">
+          <div class="cover-words" aria-hidden="true">
+            <span class="cover-word">BAKING PASSPORT</span>
+          </div>
+          <img class="cover-phones" src="./assets/cover-phones.png" alt="交錯排列的兩支手機，左側展示烘焙體驗護照首頁，右側展示角色收藏圖鑑" />
+          <p class="cover-tagline">從「自己做」<br />到「做伙做」</p>
+          <ul class="cover-features" aria-label="核心功能">
+            <li>AI 跨語言服務</li>
+            <li>手機品牌互動</li>
+            <li>UGC 自然分享</li>
+          </ul>
+          <h1 class="cover-title">烘焙體驗護照</h1>
+          <p class="cover-credit">第五組｜黃詩婷・蔡嘉安・康欣惠</p>
+        </section>
+
+        <section class="slide slide-journey" aria-label="第 2 頁：顧客旅程與互動設計">
+          <div class="journey-kicker">顧客旅程與互動設計</div>
+          <h2 class="journey-title">從既有體驗出發<br />創造新的互動接觸點</h2>
+
+          <div class="journey-lane-label journey-lane-label--store">原有門市旅程</div>
+          <svg class="journey-lines" viewBox="0 0 1920 1080" aria-hidden="true">
+            <path class="journey-route" d="M 165 585 C 300 585 350 545 475 545 S 660 590 785 590 S 970 545 1095 545 S 1280 590 1405 590 S 1600 545 1715 545" />
+            <path class="journey-link" d="M 165 613 V 733 M 475 573 V 733 M 785 618 V 733 M 1095 573 V 733 M 1405 618 V 733 M 1715 573 V 733" />
+          </svg>
+
+          <div class="journey-stop" style="--x:165px;--y:585px"><span class="journey-stop__name">入店</span><span class="journey-stop__number">01</span></div>
+          <div class="journey-stop" style="--x:475px;--y:545px"><span class="journey-stop__name">挑選想做的甜點</span><span class="journey-stop__number">02</span></div>
+          <div class="journey-stop" style="--x:785px;--y:590px"><span class="journey-stop__name">櫃檯確認與結帳</span><span class="journey-stop__number">03</span></div>
+          <div class="journey-stop" style="--x:1095px;--y:545px"><span class="journey-stop__name">DIY 製作</span><span class="journey-stop__number">04</span></div>
+          <div class="journey-stop" style="--x:1405px;--y:590px"><span class="journey-stop__name">烘焙等待</span><span class="journey-stop__number">05</span></div>
+          <div class="journey-stop" style="--x:1715px;--y:545px"><span class="journey-stop__name">成品完成</span><span class="journey-stop__number">06</span></div>
+
+          <div class="journey-lane-label journey-lane-label--mobile">新增手機互動</div>
+          <div class="journey-touchpoints">
+            <article class="touchpoint-card">
+              <svg class="touchpoint-icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="5" width="40" height="54" rx="7" fill="#fff9c7" stroke="currentColor" stroke-width="3.5"/><path d="M23 23v-6h6m12 0h-6m6 6v-6M23 34v6h6m12-6v6h-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="28" r="4" fill="#d95130"/><path d="M28 50h8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+              <h3>掃碼開啟體驗</h3>
+              <p>選擇語言</p>
+            </article>
+            <article class="touchpoint-card">
+              <svg class="touchpoint-icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M8 12h39v31H29L17 53V43H8Z" fill="#fff9c7" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><path d="M31 24h25v25H43l-7 6v-6h-5" fill="#d95130" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><text x="15" y="35" font-size="20" font-weight="800" fill="#171614">A</text><text x="37" y="42" font-size="18" font-weight="800" fill="#171614">文</text></svg>
+              <h3>多語言甜點資訊</h3>
+            </article>
+            <article class="touchpoint-card">
+              <svg class="touchpoint-icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="13" y="7" width="38" height="50" rx="5" fill="#fff9c7" stroke="currentColor" stroke-width="3.5"/><path d="M22 20h20M22 28h14M22 36h11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="43" cy="42" r="12" fill="#d95130" stroke="currentColor" stroke-width="3"/><path d="m37 42 4 4 8-9" fill="none" stroke="#fff9c7" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <h3>雙語確認卡</h3>
+            </article>
+            <article class="touchpoint-card">
+              <svg class="touchpoint-icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M10 20h12l5-7h12l5 7h10v33H10Z" fill="#fff9c7" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><circle cx="32" cy="37" r="10" fill="#d95130" stroke="currentColor" stroke-width="3.5"/><path d="m51 6 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#f8d568" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              <h3>開工拍照與趣味預言</h3>
+            </article>
+            <article class="touchpoint-card">
+              <svg class="touchpoint-icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M15 9h34v43H15Z" fill="#fff9c7" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><path d="M27 24c0-5 10-5 10 1 0 4-5 4-5 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="32" cy="41" r="2.5" fill="#d95130"/><path d="m49 4 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#d95130" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              <h3>等待時的小測驗</h3>
+              <p>秘密拍照任務</p>
+            </article>
+            <article class="touchpoint-card">
+              <svg class="touchpoint-icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M8 16h36v37H8Z" fill="#fff9c7" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><path d="M20 25h36v31H20Z" fill="#f8d568" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><circle cx="43" cy="34" r="5" fill="#d95130"/><path d="m24 49 10-10 7 6 6-5 7 9" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
+              <h3>成品拍照・角色解鎖</h3>
+              <p>個人化拍貼｜自願分享</p>
+            </article>
+          </div>
+          <div class="journey-support">
+            <div class="journey-support__main"><strong>全程支援</strong><span>手機多語言協助卡（新增）・門市人員現場支援（既有）</span></div>
+            <p class="journey-support__note">手機互動由顧客自由參與，現場教學平板與服務人員維持既有流程。</p>
+          </div>
+        </section>
+
+        <section class="slide slide-demo" aria-label="第 3 頁：操作 Demo 展示">
+          <h2 class="demo-page-header">操作 DEMO <span aria-hidden="true">｜</span> 烘焙體驗護照</h2>
+          <div class="demo-showcase">
+            <div class="demo-display">
+              <button class="demo-arrow demo-arrow--previous" type="button" data-demo-direction="-1" aria-label="上一支示範影片">←</button>
+              <div class="demo-video-stack">
+                <video class="demo-video is-selected" controls playsinline preload="metadata" poster="./assets/demo-poster.png" aria-label="完整體驗流程操作影片">
+                  <source src="./assets/demo.mp4" type="video/mp4" />
+                  您的瀏覽器不支援影片播放。
+                </video>
+                <video class="demo-video" controls playsinline preload="metadata" poster="./assets/flashcard-poster.png" aria-label="外語字卡示範影片" hidden>
+                  <source src="./assets/Flashcard_Demo.mp4" type="video/mp4" />
+                  您的瀏覽器不支援影片播放。
+                </video>
+              </div>
+              <button class="demo-arrow demo-arrow--next" type="button" data-demo-direction="1" aria-label="下一支示範影片">→</button>
+            </div>
+
+            <div class="demo-details">
+              <div class="demo-kicker">把今天，烤成回憶</div>
+              <h3 id="demo-feature-title" class="demo-feature-title" aria-live="polite">完整體驗流程</h3>
+              <p id="demo-feature-description" class="demo-feature-description">從掃碼、選擇語言、挑選甜點到完成個人化拍貼，展示烘焙體驗護照的操作流程。</p>
+            </div>
+
+            <div class="demo-operations">
+              <div>
+                <div class="demo-selector-label">選擇示範影片</div>
+                <div class="demo-selectors" role="group" aria-label="示範影片切換">
+                  <button class="demo-selector is-selected" type="button" data-demo-index="0" aria-pressed="true"><span class="demo-selector-number">01</span><span>完整體驗流程</span></button>
+                  <button class="demo-selector" type="button" data-demo-index="1" aria-pressed="false"><span class="demo-selector-number">02</span><span>外語字卡示範</span></button>
+                </div>
+              </div>
+              <button id="demo-fullscreen" class="demo-fullscreen" type="button">全螢幕播放 <span aria-hidden="true">↗</span></button>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide slide-ending" aria-label="第 4 頁：品牌體驗延伸">
+          <div class="ending-kicker">品牌體驗延伸</div>
+          <h2 class="ending-title">讓既有的烘焙體驗<br />創造更多品牌互動<br />與分享機會</h2>
+          <p class="ending-copy">
+            以 AI 輔助服務與互動設計，延伸既有的 DIY 烘焙體驗。讓顧客留下值得收藏<span class="ending-nowrap">與分享</span>的個人化拍貼。
+          </p>
+
+          <img class="ending-photobooth" src="./assets/photobooth-result.png" alt="顧客的三格個人化拍貼成果，記錄開工、等待與成品完成" />
+
+          <div class="ending-invitation">
+            <h3>換你來玩玩看！</h3>
+            <img class="ending-qr" src="./assets/interaction_qr_code.jpg" alt="掃描以體驗烘焙體驗護照的 QR Code" />
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <nav class="controls" aria-label="簡報控制">
+      <button id="previous" type="button" title="上一頁（←）" aria-label="上一頁">←</button>
+      <button id="next" type="button" title="下一頁（→）" aria-label="下一頁">→</button>
+      <span class="control-divider" aria-hidden="true"></span>
+      <button id="fullscreen" type="button" title="全螢幕（F）" aria-label="全螢幕">⛶</button>
+      <button id="print" type="button" title="列印／輸出 PDF（P）" aria-label="列印或輸出 PDF">⎙</button>
+    </nav>
+  </body>
+</html>
