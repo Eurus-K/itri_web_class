@@ -27,7 +27,7 @@ python -m http.server 8000
 ## 素材與製作
 
 - 原始素材位於上一層的 `PPT_Assets`。
-- `assets/cover-phones.png` 是提供的 `PPT_Assets/奶油烘焙角色收藏手機介面.png` 的原檔複本，保留原本的透視、遮擋與透明背景。
+- `assets/cover-phones-v2.png` 是提供的新版雙手機照片去除白底後的透明圖，保留兩支手機的透視與遮擋，供 P1 封面使用。
 - `assets/demo.mp4` 與 `assets/Flashcard_Demo.mp4` 是提供的兩支原始操作影片複本，簡報可離線播放。
 - `assets/demo-poster.png` 與 `assets/flashcard-poster.png` 是直接從上述原始影片擷取的預覽畫面，沒有重繪 Demo 介面。
 - `assets/photobooth-result.jpg` 與 `assets/interaction_qr_code.jpg` 是提供的拍貼成果與 QR Code 原檔複本，供 P4 離線顯示。掃描 QR Code 開啟線上 Demo 時需網路連線。
