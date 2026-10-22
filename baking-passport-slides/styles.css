@@ -835,6 +835,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 38px;
   margin: 0;
   padding-bottom: 48px;
   color: #dde8c9;
@@ -844,6 +845,24 @@ body {
   line-height: 1;
   letter-spacing: -.02em;
   white-space: nowrap;
+}
+
+.thanks-hearts {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #dde8c9;
+}
+
+.thanks-hearts svg {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .controls {
