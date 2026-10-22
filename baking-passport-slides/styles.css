@@ -819,7 +819,7 @@ body {
 .ending-photobooth {
   position: absolute;
   left: 1450px;
-  top: 170px;
+  top: 120px;
   width: 350px;
   height: auto;
   transform: rotate(-2deg);
