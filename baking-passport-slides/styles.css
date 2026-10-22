@@ -652,7 +652,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 70px 46px 38px;
+  padding: 150px 46px 38px;
 }
 
 .demo-feature-title {
