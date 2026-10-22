@@ -827,6 +827,25 @@ body {
   filter: drop-shadow(20px 26px 17px rgb(21 10 6 / .32));
 }
 
+.slide-thanks { background: #087e55; }
+
+.thanks-word {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding-bottom: 48px;
+  color: #dde8c9;
+  font-family: "Barlow Condensed Local", Impact, "Arial Narrow", sans-serif;
+  font-size: 360px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -.02em;
+  white-space: nowrap;
+}
+
 .controls {
   position: fixed;
   z-index: 20;
