@@ -218,7 +218,7 @@ body {
 
 .cover-screen-left {
   background-image: url("./assets/cover-home-screen.jpg");
-  transform: matrix3d(.655824692, -.050747658, 0, .000001881, .18229947, .709231341, 0, -.000110171, 0, 0, 1, 0, 180, 175, 0, 1);
+  transform: matrix3d(.655821795, -.050748401, 0, .000001876, .207534018, .709157985, 0, -.000110242, 0, 0, 1, 0, 180, 175, 0, 1);
 }
 
 .cover-screen-right {
