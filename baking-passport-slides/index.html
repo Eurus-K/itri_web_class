@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#075638" />
     <title>烘焙體驗護照｜企業專題簡報</title>
-    <link rel="stylesheet" href="./styles.css?v=p1-v4" />
-    <script defer src="./app.js"></script>
+    <link rel="stylesheet" href="./styles.css?v=p2-qr" />
+    <script defer src="./app.js?v=p2-qr"></script>
   </head>
   <body>
     <main id="stage" class="stage" aria-label="烘焙體驗護照簡報">
@@ -34,6 +34,10 @@
 
         <section class="slide slide-journey" aria-label="第 2 頁：顧客旅程與互動設計">
           <div class="journey-kicker">顧客旅程與互動設計</div>
+          <button id="journey-qr-open" class="journey-qr-open" type="button" aria-haspopup="dialog" aria-controls="journey-qr-overlay">
+            <svg viewBox="0 0 28 28" aria-hidden="true"><path d="M3 3h8v8H3zM17 3h8v8h-8zM3 17h8v8H3zM18 17h3v3h-3zM23 17h2v3h-2zM17 23h3v2h-3zM23 22h2v3h-2z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 6h2v2H6zM20 6h2v2h-2zM6 20h2v2H6z" fill="currentColor"/></svg>
+            <span>掃碼體驗</span>
+          </button>
           <h2 class="journey-title">從既有體驗出發<br />創造新的互動接觸點</h2>
 
           <div class="journey-lane-label journey-lane-label--store">原有門市旅程</div>
@@ -82,6 +86,14 @@
           <div class="journey-support">
             <div class="journey-support__main"><strong>全程支援</strong><span>手機多語言協助卡（新增）・門市人員現場支援（既有）</span></div>
             <p class="journey-support__note">手機互動由顧客自由參與，現場教學平板與服務人員維持既有流程。</p>
+          </div>
+          <div id="journey-qr-overlay" class="journey-qr-overlay" hidden>
+            <div class="journey-qr-dialog" role="dialog" aria-modal="true" aria-labelledby="journey-qr-title">
+              <button id="journey-qr-close" class="journey-qr-close" type="button" aria-label="關閉 QR Code">×</button>
+              <h3 id="journey-qr-title">掃碼開啟體驗</h3>
+              <p>用手機掃描 QR Code，試玩烘焙體驗護照。</p>
+              <img src="./assets/interaction_qr_code.jpg" alt="烘焙體驗護照的 QR Code" />
+            </div>
           </div>
         </section>
 

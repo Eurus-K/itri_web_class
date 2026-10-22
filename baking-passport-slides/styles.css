@@ -252,6 +252,29 @@ body {
   line-height: 1.2;
 }
 
+.journey-qr-open {
+  position: absolute;
+  z-index: 2;
+  top: 65px;
+  right: 80px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 56px;
+  padding: 9px 18px;
+  border: 1.5px solid var(--journey-emerald);
+  border-radius: 28px;
+  background: transparent;
+  color: var(--journey-emerald);
+  font: 700 23px/1.2 "Noto Sans TC Local", "Microsoft JhengHei", sans-serif;
+  cursor: pointer;
+}
+
+.journey-qr-open svg { width: 28px; height: 28px; }
+.journey-qr-open:hover { background: var(--journey-sage); }
+.journey-qr-open:focus-visible,
+.journey-qr-close:focus-visible { outline: 3px solid var(--journey-emerald); outline-offset: 4px; }
+
 .journey-title {
   position: absolute;
   left: 80px;
@@ -425,6 +448,65 @@ body {
   line-height: 1.35;
   text-align: right;
   white-space: nowrap;
+}
+
+.journey-qr-overlay {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgb(21 25 21 / .64);
+}
+
+.journey-qr-overlay[hidden] { display: none; }
+
+.journey-qr-dialog {
+  position: relative;
+  width: 550px;
+  padding: 43px 55px 54px;
+  border: 1px solid var(--journey-sage);
+  border-radius: 22px;
+  background: var(--journey-ivory);
+  color: var(--journey-ink);
+  text-align: center;
+  box-shadow: 0 28px 75px rgb(0 0 0 / .22);
+}
+
+.journey-qr-dialog h3 {
+  margin: 0;
+  font-size: 35px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.journey-qr-dialog p {
+  margin: 13px 0 28px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.journey-qr-dialog img {
+  display: block;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  background: #fff;
+  object-fit: contain;
+}
+
+.journey-qr-close {
+  position: absolute;
+  top: 12px;
+  right: 17px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--journey-ink);
+  font: 400 36px/1 Arial, sans-serif;
+  cursor: pointer;
 }
 
 .slide-demo {
@@ -767,5 +849,5 @@ body {
     -webkit-print-color-adjust: exact;
   }
   .slide:last-child { break-after: auto; page-break-after: auto; }
-  .controls { display: none !important; }
+  .controls, .journey-qr-overlay { display: none !important; }
 }

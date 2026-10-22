@@ -3,6 +3,10 @@ const stage = document.getElementById('stage');
 const slides = [...document.querySelectorAll('.slide')];
 const previous = document.getElementById('previous');
 const next = document.getElementById('next');
+const controls = document.querySelector('.controls');
+const journeyQrOpen = document.getElementById('journey-qr-open');
+const journeyQrOverlay = document.getElementById('journey-qr-overlay');
+const journeyQrClose = document.getElementById('journey-qr-close');
 const videos = [...document.querySelectorAll('.demo-video')];
 const demoSelectors = [...document.querySelectorAll('.demo-selector')];
 const demoFeatures = [
@@ -26,6 +30,7 @@ function fitSlide() {
 }
 
 function showSlide(index) {
+  if (!journeyQrOverlay.hidden) closeJourneyQr();
   current = Math.max(0, Math.min(index, slides.length - 1));
   slides.forEach((slide, i) => {
     slide.classList.toggle('is-active', i === current);
@@ -34,6 +39,18 @@ function showSlide(index) {
   });
   previous.disabled = current === 0;
   next.disabled = current === slides.length - 1;
+}
+
+function openJourneyQr() {
+  journeyQrOverlay.hidden = false;
+  controls.inert = true;
+  journeyQrClose.focus();
+}
+
+function closeJourneyQr() {
+  journeyQrOverlay.hidden = true;
+  controls.inert = false;
+  if (current === 1) journeyQrOpen.focus();
 }
 
 function toggleFullscreen() {
@@ -62,6 +79,11 @@ function showDemo(index) {
 
 previous.addEventListener('click', () => showSlide(current - 1));
 next.addEventListener('click', () => showSlide(current + 1));
+journeyQrOpen.addEventListener('click', openJourneyQr);
+journeyQrClose.addEventListener('click', closeJourneyQr);
+journeyQrOverlay.addEventListener('click', (event) => {
+  if (event.target === journeyQrOverlay) closeJourneyQr();
+});
 document.getElementById('fullscreen').addEventListener('click', toggleFullscreen);
 document.getElementById('print').addEventListener('click', () => window.print());
 document.querySelectorAll('[data-demo-direction]').forEach((button) => {
@@ -82,6 +104,14 @@ videos.forEach((video) => video.addEventListener('play', () => {
 }));
 
 document.addEventListener('keydown', (event) => {
+  if (!journeyQrOverlay.hidden) {
+    if (event.key === 'Escape') closeJourneyQr();
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      journeyQrClose.focus();
+    }
+    return;
+  }
   if (event.key === 'ArrowLeft') showSlide(current - 1);
   else if (event.key === 'ArrowRight') showSlide(current + 1);
   else if (event.key.toLowerCase() === 'f') toggleFullscreen();
