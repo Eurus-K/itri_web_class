@@ -246,6 +246,8 @@ body {
 
 .slide-journey {
   --journey-emerald: #087e55;
+  --journey-play: #a6533e;
+  --journey-share: #80672c;
   --journey-ivory: #f3f3e7;
   --journey-sage: #dde8c9;
   --journey-ink: #151915;
@@ -289,32 +291,57 @@ body {
 .journey-title {
   position: absolute;
   left: 80px;
-  top: 140px;
+  top: 137px;
   margin: 0;
   color: var(--journey-ink);
-  font-size: 99px;
+  font-size: 80px;
   font-weight: 900;
   line-height: 1.08;
-  letter-spacing: -.045em;
+  letter-spacing: -.035em;
 }
 
-.journey-lane-label {
+.journey-summary {
   position: absolute;
   left: 80px;
-  color: var(--journey-ink);
-  font-size: 22px;
+  top: 346px;
+  margin: 0;
+  color: var(--journey-emerald);
+  font-size: 27px;
   font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: .025em;
+  line-height: 1.25;
+  letter-spacing: .02em;
 }
 
-.journey-lane-label--store { top: 406px; }
-.journey-lane-label--mobile {
-  z-index: 1;
-  top: 653px;
-  padding-right: 12px;
-  background: var(--journey-ivory);
+.journey-legend {
+  position: absolute;
+  left: 80px;
+  top: 407px;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  color: var(--journey-ink);
+  font-size: 21px;
+  font-weight: 650;
+  line-height: 1.3;
 }
+
+.journey-legend span { display: flex; align-items: center; }
+.journey-legend__route { gap: 12px; }
+.journey-legend__route i {
+  width: 45px;
+  height: 6px;
+  border-radius: 3px;
+  background: #a9c9b4;
+}
+.journey-legend__interaction { gap: 7px; }
+.journey-legend__interaction i {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--journey-emerald);
+}
+.journey-legend__interaction i:nth-child(2) { background: var(--journey-play); }
+.journey-legend__interaction i:nth-child(3) { margin-right: 7px; background: var(--journey-share); }
 
 .journey-lines {
   position: absolute;
@@ -334,10 +361,18 @@ body {
 
 .journey-link {
   fill: none;
-  stroke: #9dbda9;
   stroke-width: 3.75;
   stroke-dasharray: 10 15;
+  opacity: .72;
 }
+
+.journey-link--language { stroke: var(--journey-emerald); }
+.journey-link--play { stroke: var(--journey-play); }
+.journey-link--share { stroke: var(--journey-share); }
+
+.journey-stop--language, .journey-group--language { --group-accent: var(--journey-emerald); }
+.journey-stop--play, .journey-group--play { --group-accent: var(--journey-play); }
+.journey-stop--share, .journey-group--share { --group-accent: var(--journey-share); }
 
 .journey-stop {
   position: absolute;
@@ -371,95 +406,79 @@ body {
   transform: translateX(-50%);
   border: 4px solid var(--journey-ivory);
   border-radius: 50%;
-  background: var(--journey-emerald);
+  background: var(--group-accent);
   color: #fff;
   font: 800 20px/1 Arial, sans-serif;
 }
 
-.journey-touchpoints {
+.journey-groups {
   position: absolute;
-  inset: 723px 75px auto 35px;
+  top: 725px;
+  right: 35px;
+  left: 35px;
   display: grid;
-  grid-template-columns: repeat(6, 260px);
-  gap: 50px;
+  grid-template-columns: 800px 580px 400px;
+  gap: 35px;
 }
 
-.touchpoint-card {
-  height: 190px;
-  padding: 17px 18px;
+.journey-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  height: 195px;
+  padding: 21px 25px 25px;
   border: 1px solid var(--journey-sage);
-  border-radius: 26px;
+  border-top: 7px solid var(--group-accent);
+  border-radius: 22px;
   background: #fff;
   color: var(--journey-ink);
 }
 
-.touchpoint-icon {
-  display: block;
-  width: 54px;
-  height: 54px;
-  color: var(--journey-emerald);
+.journey-group__heading {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  color: var(--group-accent);
 }
 
-.touchpoint-icon [fill="#fff9c7"] { fill: #fff; }
-.touchpoint-icon [fill="#f8d568"],
-.touchpoint-icon [fill="#d95130"] { fill: var(--journey-sage); }
-.touchpoint-icon [fill="#171614"] { fill: var(--journey-ink); }
-.touchpoint-icon [stroke="#fff9c7"] { stroke: var(--journey-emerald); }
+.journey-group__heading span { font-size: 22px; font-weight: 800; white-space: nowrap; }
 
-.touchpoint-card h3 {
-  margin: 10px 0 0;
-  font-size: 23px;
+.journey-group h3 {
+  margin: 0;
+  font-size: 30px;
   font-weight: 800;
-  line-height: 1.26;
-  letter-spacing: -.035em;
+  line-height: 1.25;
+  white-space: nowrap;
 }
 
-.touchpoint-card p {
-  margin: 6px 0 0;
-  font-size: 19px;
-  font-weight: 400;
-  line-height: 1.28;
-  letter-spacing: -.025em;
+.journey-group p {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.42;
 }
 
 .journey-support {
   position: absolute;
   left: 35px;
-  right: 75px;
-  top: 960px;
+  right: 35px;
+  top: 955px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 22px;
-  height: 56px;
-  padding: 0 27px;
-  border-radius: 28px;
+  gap: 28px;
+  height: 68px;
+  padding: 0 30px;
+  border-radius: 34px;
   border: 1px solid var(--journey-sage);
   background: var(--journey-sage);
   color: var(--journey-ink);
   font-size: 22px;
-  line-height: 1.2;
+  line-height: 1.3;
 }
 
-.journey-support__main {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  white-space: nowrap;
-}
-
-.journey-support__main strong { font-weight: 800; }
-.journey-support__main span { font-weight: 600; }
-
-.journey-support__note {
-  margin: 0 0 0 auto;
-  color: var(--journey-ink);
-  font-size: 17px;
-  font-weight: 500;
-  line-height: 1.35;
-  text-align: right;
-  white-space: nowrap;
-}
+.journey-support strong { font-weight: 800; white-space: nowrap; }
+.journey-support span { font-weight: 500; white-space: nowrap; }
 
 .journey-qr-overlay {
   position: absolute;
@@ -474,8 +493,8 @@ body {
 
 .journey-qr-dialog {
   position: relative;
-  width: 550px;
-  padding: 43px 55px 54px;
+  width: 700px;
+  padding: 40px 65px 44px;
   border: 1px solid var(--journey-sage);
   border-radius: 22px;
   background: var(--journey-ivory);
@@ -492,15 +511,15 @@ body {
 }
 
 .journey-qr-dialog p {
-  margin: 13px 0 28px;
+  margin: 10px 0 22px;
   font-size: 20px;
   line-height: 1.4;
 }
 
 .journey-qr-dialog img {
   display: block;
-  width: 400px;
-  height: 400px;
+  width: 540px;
+  height: 540px;
   margin: 0 auto;
   background: #fff;
   object-fit: contain;
