@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#075638" />
     <title>烘焙體驗護照｜企業專題簡報</title>
-    <link rel="stylesheet" href="./styles.css?v=p3-dual-demo" />
-    <script defer src="./app.js?v=p3-dual-demo"></script>
+    <link rel="stylesheet" href="./styles.css?v=p3-video-controls" />
+    <script defer src="./app.js?v=p3-video-controls"></script>
   </head>
   <body>
     <main id="stage" class="stage" aria-label="烘焙體驗護照簡報">
@@ -102,6 +102,10 @@
                   您的瀏覽器不支援影片播放。
                 </video>
               </div>
+                <div class="demo-player-controls" role="group" aria-label="目前影片操作">
+                  <button id="demo-play-toggle" type="button" aria-label="播放影片" aria-pressed="false"><span id="demo-play-icon" aria-hidden="true">▶</span><span id="demo-play-label">播放影片</span></button>
+                  <button id="demo-player-fullscreen" type="button" aria-label="影片全螢幕"><span aria-hidden="true">⛶</span><span>影片全螢幕</span></button>
+                </div>
               <button class="demo-arrow demo-arrow--next" type="button" data-demo-direction="1" aria-label="下一支示範影片">→</button>
             </div>
 
