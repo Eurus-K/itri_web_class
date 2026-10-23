@@ -7,8 +7,20 @@ const controls = document.querySelector('.controls');
 const journeyQrOpen = document.getElementById('journey-qr-open');
 const journeyQrOverlay = document.getElementById('journey-qr-overlay');
 const journeyQrClose = document.getElementById('journey-qr-close');
-const demoVideo = document.querySelector('.demo-video');
+const videos = [...document.querySelectorAll('.demo-video')];
+const demoSelectors = [...document.querySelectorAll('.demo-selector')];
+const demoFeatures = [
+  {
+    title: '完整體驗流程',
+    description: '從掃碼、選擇語言、挑選甜點到完成個人化拍貼，展示烘焙體驗護照的操作流程。',
+  },
+  {
+    title: '外語字卡示範',
+    description: '顧客可透過手機上的多語言協助卡，向現場人員表達需求，減少語言溝通障礙。',
+  },
+];
 let current = 0;
+let currentDemo = 0;
 
 function fitSlide() {
   const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
@@ -46,6 +58,25 @@ function toggleFullscreen() {
   else stage.requestFullscreen?.();
 }
 
+function showDemo(index) {
+  const selected = (index + videos.length) % videos.length;
+  if (selected !== currentDemo) {
+    videos[currentDemo].pause();
+    if (videos[currentDemo].readyState > 0) videos[currentDemo].currentTime = 0;
+  }
+  currentDemo = selected;
+  videos.forEach((video, i) => {
+    video.hidden = i !== selected;
+    video.classList.toggle('is-selected', i === selected);
+  });
+  demoSelectors.forEach((button, i) => {
+    button.classList.toggle('is-selected', i === selected);
+    button.setAttribute('aria-pressed', String(i === selected));
+  });
+  document.getElementById('demo-feature-title').textContent = demoFeatures[selected].title;
+  document.getElementById('demo-feature-description').textContent = demoFeatures[selected].description;
+}
+
 previous.addEventListener('click', () => showSlide(current - 1));
 next.addEventListener('click', () => showSlide(current + 1));
 journeyQrOpen.addEventListener('click', openJourneyQr);
@@ -55,11 +86,22 @@ journeyQrOverlay.addEventListener('click', (event) => {
 });
 document.getElementById('fullscreen').addEventListener('click', toggleFullscreen);
 document.getElementById('print').addEventListener('click', () => window.print());
-document.getElementById('demo-fullscreen').addEventListener('click', () => {
-  if (demoVideo.requestFullscreen) void demoVideo.requestFullscreen().catch(() => {});
-  else demoVideo.webkitEnterFullscreen?.();
-  void demoVideo.play().catch(() => {});
+document.querySelectorAll('[data-demo-direction]').forEach((button) => {
+  button.addEventListener('click', () => showDemo(currentDemo + Number(button.dataset.demoDirection)));
 });
+demoSelectors.forEach((button) => {
+  button.addEventListener('click', () => showDemo(Number(button.dataset.demoIndex)));
+});
+document.getElementById('demo-fullscreen').addEventListener('click', () => {
+  const video = videos[currentDemo];
+  if (video.requestFullscreen) void video.requestFullscreen().catch(() => {});
+  else video.webkitEnterFullscreen?.();
+  void video.play().catch(() => {});
+});
+
+videos.forEach((video) => video.addEventListener('play', () => {
+  videos.forEach((other) => { if (other !== video) other.pause(); });
+}));
 
 document.addEventListener('keydown', (event) => {
   if (!journeyQrOverlay.hidden) {
