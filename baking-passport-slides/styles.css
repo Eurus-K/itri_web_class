@@ -594,35 +594,6 @@ body {
 
 .demo-video[hidden] { display: none !important; }
 
-.demo-player-controls {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  display: flex;
-  gap: 10px;
-  width: 355px;
-  transform: translateX(-50%);
-}
-
-.demo-player-controls button {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 42px;
-  padding: 0 8px;
-  border: 1px solid var(--demo-ink);
-  background: #faf9f5;
-  color: var(--demo-ink);
-  font: 600 18px/1.2 "Noto Sans TC Local", "Microsoft JhengHei", sans-serif;
-  cursor: pointer;
-}
-
-.demo-player-controls button:hover,
-.demo-player-controls button:focus-visible { background: #e8e7df; }
-.demo-player-controls button span:first-child { font: 500 21px/1 Arial, sans-serif; }
-
 .demo-arrow {
   position: absolute;
   top: 50%;
@@ -744,7 +715,6 @@ body {
 
 .demo-arrow:focus-visible,
 .demo-selector:focus-visible,
-.demo-player-controls button:focus-visible,
 .demo-fullscreen:focus-visible {
   outline: 3px solid var(--demo-ink);
   outline-offset: 4px;

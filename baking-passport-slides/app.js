@@ -9,9 +9,6 @@ const journeyQrOverlay = document.getElementById('journey-qr-overlay');
 const journeyQrClose = document.getElementById('journey-qr-close');
 const videos = [...document.querySelectorAll('.demo-video')];
 const demoSelectors = [...document.querySelectorAll('.demo-selector')];
-const demoPlayToggle = document.getElementById('demo-play-toggle');
-const demoPlayIcon = document.getElementById('demo-play-icon');
-const demoPlayLabel = document.getElementById('demo-play-label');
 const demoFeatures = [
   {
     title: '完整體驗流程',
@@ -61,23 +58,6 @@ function toggleFullscreen() {
   else stage.requestFullscreen?.();
 }
 
-function updateDemoPlaybackControl() {
-  const playing = !videos[currentDemo].paused && !videos[currentDemo].ended;
-  demoPlayIcon.textContent = playing ? 'Ⅱ' : '▶';
-  demoPlayLabel.textContent = playing ? '暫停影片' : '播放影片';
-  demoPlayToggle.setAttribute('aria-label', playing ? '暫停影片' : '播放影片');
-  demoPlayToggle.setAttribute('aria-pressed', String(playing));
-}
-
-function fullscreenCurrentDemo() {
-  const video = videos[currentDemo];
-  if (typeof video.webkitEnterFullscreen === 'function') {
-    try { video.webkitEnterFullscreen(); }
-    catch { if (video.requestFullscreen) void video.requestFullscreen().catch(() => {}); }
-  } else if (video.requestFullscreen) void video.requestFullscreen().catch(() => {});
-  void video.play().catch(() => {});
-}
-
 function showDemo(index) {
   const selected = (index + videos.length) % videos.length;
   if (selected !== currentDemo) {
@@ -95,7 +75,6 @@ function showDemo(index) {
   });
   document.getElementById('demo-feature-title').textContent = demoFeatures[selected].title;
   document.getElementById('demo-feature-description').textContent = demoFeatures[selected].description;
-  updateDemoPlaybackControl();
 }
 
 previous.addEventListener('click', () => showSlide(current - 1));
@@ -113,22 +92,16 @@ document.querySelectorAll('[data-demo-direction]').forEach((button) => {
 demoSelectors.forEach((button) => {
   button.addEventListener('click', () => showDemo(Number(button.dataset.demoIndex)));
 });
-demoPlayToggle.addEventListener('click', () => {
+document.getElementById('demo-fullscreen').addEventListener('click', () => {
   const video = videos[currentDemo];
-  if (video.paused || video.ended) void video.play().catch(() => {});
-  else video.pause();
+  if (video.requestFullscreen) void video.requestFullscreen().catch(() => {});
+  else video.webkitEnterFullscreen?.();
+  void video.play().catch(() => {});
 });
-document.getElementById('demo-player-fullscreen').addEventListener('click', fullscreenCurrentDemo);
-document.getElementById('demo-fullscreen').addEventListener('click', fullscreenCurrentDemo);
 
 videos.forEach((video) => video.addEventListener('play', () => {
   videos.forEach((other) => { if (other !== video) other.pause(); });
-  updateDemoPlaybackControl();
 }));
-videos.forEach((video) => {
-  video.addEventListener('pause', updateDemoPlaybackControl);
-  video.addEventListener('ended', updateDemoPlaybackControl);
-});
 
 document.addEventListener('keydown', (event) => {
   if (!journeyQrOverlay.hidden) {
